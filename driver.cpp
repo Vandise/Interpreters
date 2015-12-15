@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "driver.hpp"
+#include "nodes/literalnode.hpp"
 
 FrontEnd::Driver::~Driver()
 { 
@@ -84,7 +85,8 @@ FrontEnd::Driver::add_word( const std::string &word )
 void
 FrontEnd::Driver::add_int( int &number )
 {
-  std::cout << number;
+  Nodes::LiteralNode *node = new Nodes::LiteralNode(number);
+  std::cout << node->value;
 }
 
 void

@@ -16,10 +16,13 @@ CXXFLAGS = -Wno-deprecated-register -O0  $(CXXDEBUG) $(CXXSTD)
 OBJDIR = obj/
 OUTDIR = bin/
 
+OBJ_FILES = $(wildcard obj/*.o)
 MAIN_DRIVER = main driver
 PARSER_LEXER =  parser lexer
 MAIN_DRIVER_OUT = $(addsuffix .o, $(addprefix $(OBJDIR),$(MAIN_DRIVER)))
-OBJ_FILES = $(wildcard obj/*.o)
+
+NODE_FILES = $(wildcard nodes/*.cpp)
+NODE_FILES_OUT = $(addprefix obj/,$(notdir $(NODE_FILES:.cpp=.o)))
 
 
 .PHONY: all
@@ -32,6 +35,7 @@ compile:
 dependencies:
 	$(MAKE) $(PARSER_LEXER)
 	$(MAKE) $(MAIN_DRIVER_OUT)
+	$(MAKE) $(NODE_FILES_OUT)
 
 parser: parser.yy
 	bison -d -v parser.yy
@@ -50,4 +54,7 @@ clean:
 	-mkdir $(OUTDIR)
 
 $(OBJDIR)%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJDIR)%.o: nodes/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
