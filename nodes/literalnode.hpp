@@ -4,6 +4,14 @@
 #include <boost/variant.hpp>
 #include "abstractnode.hpp"
 
+/*
+
+  TODO:
+    Initialize Runtime - Bind each value type for literals
+    to one of the Runtimes objectClass subclasses
+
+*/
+
 namespace Nodes
 {
   class LiteralNode : public AbstractNode
