@@ -2,6 +2,7 @@
 #define __OBJECT_HPP__ 1
 
 #include <string>
+#include <map>
 
 namespace Runtime
 {
@@ -12,6 +13,7 @@ namespace Runtime
   {
     private:
       StdClass *klass;
+      std::map<std::string, Object> instanceVariables;
 
     public:
       Object(StdClass *klass);
