@@ -24,6 +24,8 @@ MAIN_DRIVER_OUT = $(addsuffix .o, $(addprefix $(OBJDIR),$(MAIN_DRIVER)))
 NODE_FILES = $(wildcard nodes/*.cpp)
 NODE_FILES_OUT = $(addprefix obj/,$(notdir $(NODE_FILES:.cpp=.o)))
 
+RUNTIME_FILES = $(wildcard runtime/*.cpp)
+RUNTIME_FILES_OUT = $(addprefix obj/,$(notdir $(RUNTIME_FILES:.cpp=.o)))
 
 .PHONY: all
 
@@ -36,6 +38,7 @@ dependencies:
 	$(MAKE) $(PARSER_LEXER)
 	$(MAKE) $(MAIN_DRIVER_OUT)
 	$(MAKE) $(NODE_FILES_OUT)
+	$(MAKE) $(RUNTIME_FILES_OUT)
 
 parser: parser.yy
 	bison -d -v parser.yy
@@ -57,4 +60,7 @@ $(OBJDIR)%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJDIR)%.o: nodes/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJDIR)%.o: runtime/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
