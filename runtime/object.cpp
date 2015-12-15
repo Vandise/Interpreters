@@ -19,7 +19,12 @@ Runtime::Object::Object(StdClass *klass)
 */
 Runtime::Object::Object( std::string name )
 {
+  /* todo */
+}
 
+Runtime::Object::Object( )
+{
+  /* leave blank, should be deleted after the runtime is set up */
 }
 
 Runtime::StdClass::StdClass( std::string name, StdClass *superClass )
