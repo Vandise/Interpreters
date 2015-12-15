@@ -1,7 +1,7 @@
 CC    ?= clang
 CXX   ?= clang++
 
-EXE = my_wc
+EXE = wc
 
 CDEBUG = -g -Wall
 
@@ -13,37 +13,41 @@ CXXSTD = -std=c++11
 CFLAGS = -Wno-deprecated-register -O0  $(CDEBUG) $(CSTD) 
 CXXFLAGS = -Wno-deprecated-register -O0  $(CXXDEBUG) $(CXXSTD)
 
+OBJDIR = obj/
+OUTDIR = bin/
 
-CPPOBJ = main driver
-SOBJ =  parser lexer
+MAIN_DRIVER = main driver
+PARSER_LEXER =  parser lexer
+MAIN_DRIVER_OUT = $(addsuffix .o, $(addprefix $(OBJDIR),$(MAIN_DRIVER)))
+OBJ_FILES = $(wildcard obj/*.o)
 
-FILES = $(addsuffix .cpp, $(CPPOBJ))
-OBJS  = $(addsuffix .o, $(CPPOBJ))
-
-CLEANLIST =  $(addsuffix .o, $(OBJ)) $(OBJS) \
-				 mparser.tab.cc parser.tab.hh \
-				 location.hh position.hh \
-			    stack.hh parser.output parser.o \
-				 lexer.o lexer.yy.cc $(EXE)\
 
 .PHONY: all
-all: wc
 
-wc: $(FILES)
-	$(MAKE) $(SOBJ)
-	$(MAKE) $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(EXE) $(OBJS) parser.o lexer.o $(LIBS)
+all: dependencies
+
+compile:
+	$(CXX) $(CXXFLAGS) -o $(OUTDIR)$(EXE) $(OBJ_FILES) $(LIBS)
+
+dependencies:
+	$(MAKE) $(PARSER_LEXER)
+	$(MAKE) $(MAIN_DRIVER_OUT)
 
 parser: parser.yy
 	bison -d -v parser.yy
-	$(CXX) $(CXXFLAGS) -c -o parser.o parser.tab.cc
+	$(CXX) $(CXXFLAGS) -c -o $(OBJDIR)parser.o parser.tab.cc
 
 lexer: lexer.l
 	flex --outfile=lexer.yy.cc  $<
-	$(CXX)  $(CXXFLAGS) -c lexer.yy.cc -o lexer.o
+	$(CXX)  $(CXXFLAGS) -c lexer.yy.cc -o $(OBJDIR)lexer.o
 
 
 .PHONY: clean
 clean:
-	rm -rf $(CLEANLIST)
+	-rm -rf $(OBJDIR)
+	-rm -rf $(OUTDIR)
+	-mkdir $(OBJDIR)
+	-mkdir $(OUTDIR)
 
+$(OBJDIR)%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
