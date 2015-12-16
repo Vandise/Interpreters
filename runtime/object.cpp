@@ -26,9 +26,3 @@ Runtime::Object::Object( )
 {
   /* leave blank, should be deleted after the runtime is set up */
 }
-
-Runtime::StdClass::StdClass( std::string name, StdClass *superClass )
-{
-  this->name = name;
-  this->superClass = superClass;
-}

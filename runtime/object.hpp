@@ -17,19 +17,19 @@ namespace Runtime
       std::map<std::string, Object> instanceVariables;
 
     public:
+      Object();
       Object(StdClass *klass);
       Object(std::string name);
-      Object();
-  };
-
-  class StdClass : public Object
-  {
-    private:
-      std::string name;
-      Runtime::StdClass *superClass;
-
-    public:
-      StdClass(std::string name, StdClass *superClass);
+      StdClass getStdClass();
+      void     setStdClass(StdClass *klass);
+      Object   getInstanceVariable(std::string name);
+      int      hasInstanceVariable(std::string name);
+      void     setInstanceVariable(std::string name, Object value);
+      Object   call(std::string method, std::map<std::string, Object>);
+      Object   call(std::string method);
+      int      isTrue();
+      int      isFalse();
+      int      isNil();
   };
 
 }
