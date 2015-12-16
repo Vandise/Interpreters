@@ -39,5 +39,5 @@ Runtime::ValueObject::isNil()
 boost::variant<int,std::string>
 Runtime::ValueObject::getValue()
 {
-  /* TODO */
+  return this->value;
 }

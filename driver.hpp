@@ -5,6 +5,7 @@
 #include <cstdint>
 #include "scanner.hpp"
 #include "parser.tab.hh"
+#include "runtime/valueobject.hpp"
 
 namespace FrontEnd{
 
