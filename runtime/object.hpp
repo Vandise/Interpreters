@@ -20,7 +20,7 @@ namespace Runtime
       Object();
       Object(StdClass *klass);
       Object(std::string name);
-      StdClass getStdClass();
+      StdClass* getStdClass();
       void     setStdClass(StdClass *klass);
       Object   getInstanceVariable(std::string name);
       int      hasInstanceVariable(std::string name);

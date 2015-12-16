@@ -1,6 +1,12 @@
 #include "object.hpp"
 
-Runtime::Object::Object(StdClass *klass)
+
+Runtime::Object::Object()
+{
+  /* TODO */
+}
+
+Runtime::Object::Object(Runtime::StdClass *klass)
 {
   this->klass = klass;
 }
@@ -17,12 +23,67 @@ Runtime::Object::Object(StdClass *klass)
   nodes other than the current literal node.
   
 */
-Runtime::Object::Object( std::string name )
+Runtime::Object::Object(std::string name)
 {
-  /* todo */
+  /* TODO */
 }
 
-Runtime::Object::Object( )
+Runtime::StdClass*
+Runtime::Object::getStdClass()
 {
-  /* leave blank, should be deleted after the runtime is set up */
+  /* TODO */
+}
+
+void
+Runtime::Object::setStdClass(Runtime::StdClass *klass)
+{
+  /* TODO */
+}
+
+Runtime::Object
+Runtime::Object::getInstanceVariable(std::string name)
+{
+  /* TODO */
+}
+
+int
+Runtime::Object::hasInstanceVariable(std::string name)
+{
+  /* TODO - this should return a boolean type */
+}
+
+void
+Runtime::Object::setInstanceVariable(std::string name, Runtime::Object value)
+{
+  /* TODO */
+}
+
+Runtime::Object
+Runtime::Object::call(std::string method, std::map<std::string, Runtime::Object>)
+{
+  /* TODO */
+}
+
+Runtime::Object
+Runtime::Object::call(std::string method)
+{
+  /* TODO */
+}
+
+int
+Runtime::Object::isTrue()
+{
+  /* TODO */
+}
+
+int
+Runtime::Object::isFalse()
+{
+  /* TODO */
+}
+
+int
+Runtime::Object::isNil()
+{
+  /* TODO */
 }
