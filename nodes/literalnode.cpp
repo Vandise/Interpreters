@@ -1,7 +1,7 @@
 #include "literalnode.hpp"
 #include <iostream>
 
-Nodes::LiteralNode::LiteralNode(int value)
+Nodes::LiteralNode::LiteralNode(Runtime::ValueObject* value)
 {
   this->value = value;
 }

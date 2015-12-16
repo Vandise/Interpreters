@@ -3,6 +3,7 @@
 
 #include <boost/variant.hpp>
 #include "abstractnode.hpp"
+#include "../runtime/valueobject.hpp"
 
 /*
 
@@ -12,13 +13,18 @@
 
 */
 
+namespace Runtime
+{
+  class ValueObject;
+}
+
 namespace Nodes
 {
   class LiteralNode : public AbstractNode
   {
     public:
-      boost::variant<int> value;
-      LiteralNode(int value);
+      Runtime::ValueObject* value;
+      LiteralNode(Runtime::ValueObject* value);
       void eval();
   };
 }

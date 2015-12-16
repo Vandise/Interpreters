@@ -85,8 +85,8 @@ FrontEnd::Driver::add_word( const std::string &word )
 void
 FrontEnd::Driver::add_int( int &number )
 {
-  Nodes::LiteralNode *node = new Nodes::LiteralNode(number);
-  std::cout << node->value;
+  //Nodes::LiteralNode *node = new Nodes::LiteralNode(number);
+  std::cout << number;
 }
 
 void
