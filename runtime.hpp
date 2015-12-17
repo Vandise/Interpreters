@@ -2,8 +2,6 @@
 #define __RUNTIME_HPP__ 1
 
 #include <string>
-#include "runtime/object.hpp"
-#include "runtime/stdclass.hpp"
 
 namespace Runtime
 {
@@ -16,52 +14,24 @@ namespace Lang
   class Runtime
   {
     public:
-      static ::Runtime::StdClass *objectClass;
-      static ::Runtime::Object   *mainObject;
-      static ::Runtime::Object   *nilObject;
-      static ::Runtime::Object   *trueObject;
-      static ::Runtime::Object   *falseObject;
+      static ::Runtime::StdClass* objectClass;
+      static ::Runtime::Object*   mainObject;
+      static ::Runtime::Object*   nilObject;
+      static ::Runtime::Object*   trueObject;
+      static ::Runtime::Object*   falseObject;
       
-      static ::Runtime::StdClass *getObjectClass()
-      {
-        return objectClass;
-      }
-
-      static ::Runtime::Object*   getMainObject()
-      {
-        return mainObject;
-      }
-
-      static ::Runtime::StdClass* getRootClass(std::string name)
-      {
-        return static_cast<::Runtime::StdClass*>(objectClass->getConstant(name));
-      }
-      
-      static ::Runtime::StdClass* getExceptionClass()
-      {
-        return getRootClass(std::string("Exception"));
-      }
-      
-      static ::Runtime::Object*   getNil()
-      {
-        return nilObject;
-      }
-      
-      static ::Runtime::Object*   getTrue()
-      {
-        return trueObject;
-      }
-
-      static ::Runtime::Object*   getFalse()
-      {
-        return falseObject;
-      }
-
-      static ::Runtime::Object*   toBoolean(int value)
-      {
-        return value ? getTrue() : getFalse();
-      }
+      static ::Runtime::StdClass* getObjectClass();
+      static ::Runtime::Object*   getMainObject();
+      static ::Runtime::StdClass* getRootClass(std::string name);
+      static ::Runtime::StdClass* getExceptionClass();
+      static ::Runtime::Object*   getNil();
+      static ::Runtime::Object*   getTrue();
+      static ::Runtime::Object*   getFalse();
+      static ::Runtime::Object*   toBoolean(int value);
   };
+  
 }
 
 #endif
+
+Runtime::Object* Lang::Runtime::nilObject;

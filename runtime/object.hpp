@@ -14,7 +14,7 @@ namespace Runtime
     private:
       typedef Object super;
       StdClass *klass;
-      std::map<std::string, Object> instanceVariables;
+      std::map<std::string, Object*> instanceVariables;
 
     public:
       Object();
@@ -22,11 +22,11 @@ namespace Runtime
       Object(std::string name);
       StdClass* getStdClass();
       void     setStdClass(StdClass *klass);
-      Object   getInstanceVariable(std::string name);
+      Object*  getInstanceVariable(std::string name);
       int      hasInstanceVariable(std::string name);
       void     setInstanceVariable(std::string name, Object value);
-      Object   call(std::string method, std::map<std::string, Object>);
-      Object   call(std::string method);
+      Object*  call(std::string method, std::map<std::string, Object>);
+      Object*  call(std::string method);
       int      isTrue();
       int      isFalse();
       int      isNil();

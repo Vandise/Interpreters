@@ -1,5 +1,5 @@
 #include "object.hpp"
-
+#include "../runtime.hpp"
 
 Runtime::Object::Object()
 {
@@ -31,25 +31,27 @@ Runtime::Object::Object(std::string name)
 Runtime::StdClass*
 Runtime::Object::getStdClass()
 {
-  /* TODO */
+  return klass;
 }
 
 void
 Runtime::Object::setStdClass(Runtime::StdClass *klass)
 {
-  /* TODO */
+  this->klass = klass;
 }
 
-Runtime::Object
+Runtime::Object*
 Runtime::Object::getInstanceVariable(std::string name)
 {
-  /* TODO */
+  if(hasInstanceVariable(name))
+    return instanceVariables[name];
+  return Lang::Runtime::nilObject;
 }
 
 int
 Runtime::Object::hasInstanceVariable(std::string name)
 {
-  /* TODO - this should return a boolean type */
+  return instanceVariables.count(name);
 }
 
 void
@@ -58,13 +60,13 @@ Runtime::Object::setInstanceVariable(std::string name, Runtime::Object value)
   /* TODO */
 }
 
-Runtime::Object
+Runtime::Object*
 Runtime::Object::call(std::string method, std::map<std::string, Runtime::Object>)
 {
   /* TODO */
 }
 
-Runtime::Object
+Runtime::Object*
 Runtime::Object::call(std::string method)
 {
   /* TODO */
