@@ -16,6 +16,7 @@ namespace Runtime
       std::map<std::string, Object> constants;
       std::map<std::string, std::string> methods;
       StdClass *superClass;
+      void construct(std::string name);
 
     public:
       StdClass(std::string name, StdClass *superClass);

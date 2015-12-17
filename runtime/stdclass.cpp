@@ -1,14 +1,22 @@
 #include "stdclass.hpp"
+#include "../runtime.hpp"
 
 Runtime::StdClass::StdClass(std::string name)
 {
-  /* TODO */
+  construct(name);
 }
 
 Runtime::StdClass::StdClass(std::string name, Runtime::StdClass *superClass)
 {
   this->name = name;
   this->superClass = superClass;
+}
+
+void
+Runtime::StdClass::construct(std::string name)
+{
+  this->name = name;
+  this->superClass = Lang::Runtime::getObjectClass();
 }
 
 std::string

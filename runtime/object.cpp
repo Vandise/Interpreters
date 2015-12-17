@@ -1,3 +1,4 @@
+#include "object.hpp"
 #include "../runtime.hpp"
 
 Runtime::Object::Object()
@@ -80,17 +81,17 @@ Runtime::Object::call(std::string method)
 int
 Runtime::Object::isTrue()
 {
-  /* TODO */
+  return 1;
 }
 
 int
 Runtime::Object::isFalse()
 {
-  /* TODO */
+  return 0;
 }
 
 int
 Runtime::Object::isNil()
 {
-  /* TODO */
+  return 0;
 }
