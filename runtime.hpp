@@ -3,11 +3,20 @@
 
 #include <string>
 
+namespace Lang
+{
+  class Lang;  
+}
+
 namespace Runtime
 {
   class Object;
   class StdClass;
 }
+
+#include "runtime/object.hpp"
+#include "runtime/stdclass.hpp"
+#include "runtime/valueobject.hpp"
 
 namespace Lang
 {
@@ -20,14 +29,53 @@ namespace Lang
       static ::Runtime::Object*   trueObject;
       static ::Runtime::Object*   falseObject;
       
-      static ::Runtime::StdClass* getObjectClass();
-      static ::Runtime::Object*   getMainObject();
-      static ::Runtime::StdClass* getRootClass(std::string name);
-      static ::Runtime::StdClass* getExceptionClass();
-      static ::Runtime::Object*   getNil();
-      static ::Runtime::Object*   getTrue();
-      static ::Runtime::Object*   getFalse();
-      static ::Runtime::Object*   toBoolean(int value);
+      ::Runtime::StdClass*
+      getObjectClass()
+      {
+        return objectClass;
+      }
+      
+      ::Runtime::Object*
+      getMainObject()
+      {
+        return mainObject;
+      }
+      
+      ::Runtime::StdClass*
+      getRootClass(std::string name)
+      {
+        return static_cast<::Runtime::StdClass*>(objectClass->getConstant(name));
+      }
+      
+      ::Runtime::StdClass*
+      getExceptionClass()
+      {
+        return getRootClass(std::string("Exception"));
+      }
+      
+      ::Runtime::Object*
+      getNil()
+      {
+        return nilObject;
+      }
+      
+      ::Runtime::Object*
+      getTrue()
+      {
+        return trueObject;
+      }
+      
+      ::Runtime::Object*
+      getFalse()
+      {
+        return falseObject;
+      }
+      
+      ::Runtime::Object*
+      toBoolean(int value)
+      {
+        return value ? getTrue() : getFalse();
+      }
   };
   
 }

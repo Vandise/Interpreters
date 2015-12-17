@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-#include "object.hpp"
+#include "../runtime.hpp"
 
 namespace Runtime
 {

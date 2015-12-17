@@ -1,4 +1,3 @@
-#include "object.hpp"
 #include "../runtime.hpp"
 
 Runtime::Object::Object()
