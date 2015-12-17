@@ -4,13 +4,11 @@
 #include <string>
 #include <map>
 
-#include "../runtime.hpp"
+#include "object.hpp"
 
 namespace Runtime
 {
-  
   class Object;
-
   class StdClass : public Object
   {
     private:

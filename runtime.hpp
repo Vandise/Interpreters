@@ -8,15 +8,16 @@ namespace Lang
   class Lang;  
 }
 
+#include "runtime/object.hpp"
+#include "runtime/stdclass.hpp"
+#include "runtime/valueobject.hpp"
+
 namespace Runtime
 {
   class Object;
   class StdClass;
 }
 
-#include "runtime/object.hpp"
-#include "runtime/stdclass.hpp"
-#include "runtime/valueobject.hpp"
 
 namespace Lang
 {
@@ -29,49 +30,49 @@ namespace Lang
       static ::Runtime::Object*   trueObject;
       static ::Runtime::Object*   falseObject;
       
-      ::Runtime::StdClass*
+      static ::Runtime::StdClass*
       getObjectClass()
       {
         return objectClass;
       }
       
-      ::Runtime::Object*
+      static ::Runtime::Object*
       getMainObject()
       {
         return mainObject;
       }
       
-      ::Runtime::StdClass*
+      static ::Runtime::StdClass*
       getRootClass(std::string name)
       {
         return static_cast<::Runtime::StdClass*>(objectClass->getConstant(name));
       }
       
-      ::Runtime::StdClass*
+      static ::Runtime::StdClass*
       getExceptionClass()
       {
         return getRootClass(std::string("Exception"));
       }
       
-      ::Runtime::Object*
+      static ::Runtime::Object*
       getNil()
       {
         return nilObject;
       }
       
-      ::Runtime::Object*
+      static ::Runtime::Object*
       getTrue()
       {
         return trueObject;
       }
       
-      ::Runtime::Object*
+      static ::Runtime::Object*
       getFalse()
       {
         return falseObject;
       }
       
-      ::Runtime::Object*
+      static ::Runtime::Object*
       toBoolean(int value)
       {
         return value ? getTrue() : getFalse();
@@ -82,4 +83,5 @@ namespace Lang
 
 #endif
 
+Runtime::StdClass* Lang::Runtime::objectClass;
 Runtime::Object* Lang::Runtime::nilObject;

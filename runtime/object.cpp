@@ -24,7 +24,13 @@ Runtime::Object::Object(Runtime::StdClass *klass)
 */
 Runtime::Object::Object(std::string name)
 {
-  /* TODO */
+  construct(name);
+}
+
+void
+Runtime::Object::construct(std::string name)
+{
+  this->klass = Lang::Runtime::getRootClass(name);
 }
 
 Runtime::StdClass*
@@ -44,7 +50,7 @@ Runtime::Object::getInstanceVariable(std::string name)
 {
   if(hasInstanceVariable(name))
     return instanceVariables[name];
-  return Lang::Runtime::nilObject;
+  return Lang::Runtime::getNil();
 }
 
 int
@@ -54,9 +60,9 @@ Runtime::Object::hasInstanceVariable(std::string name)
 }
 
 void
-Runtime::Object::setInstanceVariable(std::string name, Runtime::Object value)
+Runtime::Object::setInstanceVariable(std::string name, Runtime::Object *value)
 {
-  /* TODO */
+  instanceVariables[name] = value;
 }
 
 Runtime::Object*

@@ -24,12 +24,15 @@ namespace Runtime
       void     setStdClass(StdClass *klass);
       Object*  getInstanceVariable(std::string name);
       int      hasInstanceVariable(std::string name);
-      void     setInstanceVariable(std::string name, Object value);
+      void     setInstanceVariable(std::string name, Object *value);
       Object*  call(std::string method, std::map<std::string, Object>);
       Object*  call(std::string method);
       int      isTrue();
       int      isFalse();
       int      isNil();
+
+    private:
+      void construct(std::string name);
   };
 
 }
