@@ -23,7 +23,7 @@ Runtime::StdClass::setConstant(std::string name, Runtime::Object value)
   /* TODO */
 }
 
-Runtime::Object
+Runtime::Object*
 Runtime::StdClass::getConstant(std::string name)
 {
   /* TODO */

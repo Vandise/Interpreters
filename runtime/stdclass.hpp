@@ -25,7 +25,7 @@ namespace Runtime
       std::string getName();
       StdClass getSuperClass();
       void     setConstant(std::string name, Object value);
-      Object   getConstant(std::string name);
+      Object*  getConstant(std::string name);
       int      hasConstant(std::string name);
       void     lookup(std::string name);
       int      hasMethod(std::string name);
