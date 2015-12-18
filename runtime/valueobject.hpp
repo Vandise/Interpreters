@@ -13,6 +13,7 @@ namespace Runtime
   class ValueObject : public Object
   {
     private:
+      typedef Object super;
       boost::variant<int,std::string> value;
 
     public:

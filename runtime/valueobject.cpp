@@ -31,8 +31,8 @@ Runtime::ValueObject::ValueObject(std::string value)
 
 */
 Runtime::ValueObject::ValueObject(int value)
-/* TODO: Call Super after runtime is initialized -- : super(i), J(j) etc */
 {
+  super("Integer");
   this->value = value;
 }
 

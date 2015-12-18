@@ -13,7 +13,6 @@ namespace Runtime
   class Object
   {
     private:
-      typedef Object super;
       StdClass *klass;
       std::map<std::string, Object*> instanceVariables;
 

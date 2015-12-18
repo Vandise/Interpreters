@@ -12,6 +12,7 @@ namespace Runtime
   class StdClass : public Object
   {
     private:
+      typedef Object super;
       std::string name;
       std::map<std::string, Object*> constants;
       std::map<std::string, std::string> methods;
