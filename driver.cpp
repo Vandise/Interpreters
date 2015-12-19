@@ -5,6 +5,7 @@
 #include "driver.hpp"
 #include "nodes/nodes.hpp"
 #include "nodes/literalnode.hpp"
+#include "nodes/callnode.hpp"
 
 FrontEnd::Driver::~Driver()
 { 

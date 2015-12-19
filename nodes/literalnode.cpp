@@ -6,8 +6,8 @@ Nodes::LiteralNode::LiteralNode(Runtime::ValueObject* value)
   this->value = value;
 }
 
-void
+Runtime::ValueObject*
 Nodes::LiteralNode::eval()
 {
-  std::cout << "Not Yet Implemented";
+  return this->value;
 }

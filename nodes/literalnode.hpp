@@ -5,13 +5,6 @@
 #include "abstractnode.hpp"
 #include "../runtime/valueobject.hpp"
 
-/*
-
-  TODO:
-    Initialize Runtime - Bind each value type for literals
-    to one of the Runtimes objectClass subclasses
-
-*/
 
 namespace Runtime
 {
@@ -25,7 +18,7 @@ namespace Nodes
     public:
       Runtime::ValueObject* value;
       LiteralNode(Runtime::ValueObject* value);
-      void eval();
+      Runtime::ValueObject* eval();
   };
 }
 
