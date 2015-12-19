@@ -17,7 +17,7 @@ OBJDIR = obj/
 OUTDIR = bin/
 
 OBJ_FILES = $(wildcard obj/*.o)
-MAIN_DRIVER = main driver runtime
+MAIN_DRIVER = main driver runtime bootstrapper
 PARSER_LEXER =  parser lexer
 MAIN_DRIVER_OUT = $(addsuffix .o, $(addprefix $(OBJDIR),$(MAIN_DRIVER)))
 
