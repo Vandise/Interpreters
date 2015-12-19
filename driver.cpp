@@ -15,6 +15,14 @@ FrontEnd::Driver::~Driver()
    parser = nullptr;
 }
 
+void
+FrontEnd::Driver::set_stack(std::vector<Nodes::AbstractNode*> stack)
+{
+  std::cout << "Stack Size: ";
+  std::cout << stack.size();
+  this->nodes->nodes = stack;
+}
+
 void 
 FrontEnd::Driver::parse( const char * const filename )
 {
@@ -88,7 +96,9 @@ void
 FrontEnd::Driver::add_int( int &number )
 {
   Nodes::LiteralNode *node = new Nodes::LiteralNode(new Runtime::ValueObject(number));
-  std::cout << node->value->getValue();
+  this->nodes->add(node);
+  std::cout << this->nodes->nodes.size();
+  std::cout << "\n";
 }
 
 void
@@ -115,10 +125,12 @@ FrontEnd::Driver::add_char()
 std::ostream& 
 FrontEnd::Driver::print( std::ostream &stream )
 {
+  /*
    stream << "Uppercase: " << uppercase << "\n";
    stream << "Lowercase: " << lowercase << "\n";
    stream << "Lines: " << lines << "\n";
    stream << "Words: " << words << "\n";
    stream << "Characters: " << chars << "\n";
+   */
    return(stream);
 }

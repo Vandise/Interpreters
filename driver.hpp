@@ -26,7 +26,7 @@ namespace FrontEnd{
     
        void parse( const char *filename );
       
-    
+       void set_stack(std::vector<Nodes::AbstractNode*> stack);
        void add_upper();
        void add_lower();
        void add_word( const std::string &word );

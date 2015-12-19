@@ -1,5 +1,4 @@
 #include "callnode.hpp"
-#include "abstractnode.hpp"
 #include "../runtime/stdclass.hpp"
 
 Nodes::CallNode::CallNode(std::string method, AbstractNode *receiver, std::map<int, AbstractNode*> arguments)

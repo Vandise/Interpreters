@@ -49,19 +49,26 @@
 
 #line 51 "parser.tab.cc" // lalr1.cc:412
 // Unqualified %code blocks.
-#line 18 "parser.yy" // lalr1.cc:413
+#line 32 "parser.yy" // lalr1.cc:413
 
    #include <iostream>
    #include <cstdlib>
    #include <fstream>
-   
+   #include <map>
+
    /* include for all driver functions */
    #include "driver.hpp"
 
-#undef yylex
-#define yylex scanner.yylex
+   #include "nodes/abstractnode.hpp"
+   #include "nodes/nodes.hpp"
+   #include "nodes/literalnode.hpp"
+   #include "nodes/callnode.hpp"
 
-#line 65 "parser.tab.cc" // lalr1.cc:413
+   #undef yylex
+   #define yylex scanner.yylex
+   
+
+#line 72 "parser.tab.cc" // lalr1.cc:413
 
 
 #ifndef YY_
@@ -126,9 +133,9 @@
 #define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
-#line 5 "parser.yy" // lalr1.cc:479
+#line 4 "parser.yy" // lalr1.cc:479
 namespace FrontEnd {
-#line 132 "parser.tab.cc" // lalr1.cc:479
+#line 139 "parser.tab.cc" // lalr1.cc:479
 
   /// Build a parser object.
   Parser::Parser (Scanner  &scanner_yyarg, Driver  &driver_yyarg)
@@ -336,156 +343,156 @@ namespace FrontEnd {
     {
             case 18: // SEMICOLON
 
-#line 86 "parser.yy" // lalr1.cc:617
-        { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
-#line 342 "parser.tab.cc" // lalr1.cc:617
-        break;
-
-      case 19: // COLON
-
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 349 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 20: // DOT
+      case 19: // COLON
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 356 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 21: // OPEN_PARENT
+      case 20: // DOT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 363 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 22: // CLOSE_PARENT
+      case 21: // OPEN_PARENT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 370 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 23: // AT
+      case 22: // CLOSE_PARENT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 377 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 24: // EQ
+      case 23: // AT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 384 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 25: // LE
+      case 24: // EQ
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 391 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 26: // GE
+      case 25: // LE
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 398 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 27: // LT
+      case 26: // GE
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 405 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 28: // GT
+      case 27: // LT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 412 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 29: // PLUS
+      case 28: // GT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 419 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 30: // MINUS
+      case 29: // PLUS
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 426 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 31: // MUL
+      case 30: // MINUS
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 433 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 32: // DIV
+      case 31: // MUL
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 440 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 33: // MOD
+      case 32: // DIV
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 447 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 34: // AND
+      case 33: // MOD
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 454 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 35: // OR
+      case 34: // AND
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 461 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 36: // NOT
+      case 35: // OR
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 468 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 37: // ASSIGN
+      case 36: // NOT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 475 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 38: // COMMENT
+      case 37: // ASSIGN
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 482 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 39: // NEWLINE
+      case 38: // COMMENT
 
-#line 86 "parser.yy" // lalr1.cc:617
+#line 113 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 489 "parser.tab.cc" // lalr1.cc:617
+        break;
+
+      case 39: // NEWLINE
+
+#line 113 "parser.yy" // lalr1.cc:617
+        { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
+#line 496 "parser.tab.cc" // lalr1.cc:617
         break;
 
 
@@ -712,20 +719,35 @@ namespace FrontEnd {
         {
           switch (yyn)
             {
+  case 2:
+#line 129 "parser.yy" // lalr1.cc:859
+    { 
+                              std::vector<Nodes::AbstractNode *> nodes;
+                              nodes.push_back((yystack_[0].value.abs_node));
+                              driver.set_stack(nodes); 
+                            }
+#line 730 "parser.tab.cc" // lalr1.cc:859
+    break;
+
   case 10:
-#line 119 "parser.yy" // lalr1.cc:859
-    { std::cout << "Integer Parsed\n"; }
-#line 719 "parser.tab.cc" // lalr1.cc:859
+#line 150 "parser.yy" // lalr1.cc:859
+    { (yylhs.value.abs_node) = new Nodes::LiteralNode(new Runtime::ValueObject((yystack_[0].value.ival))); }
+#line 736 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 11:
-#line 123 "parser.yy" // lalr1.cc:859
-    { std::cout << "Plus Parsed\n"; }
-#line 725 "parser.tab.cc" // lalr1.cc:859
+#line 154 "parser.yy" // lalr1.cc:859
+    {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = (yystack_[0].value.abs_node);
+                                        std::string method = *(yystack_[1].value.sval);
+                                        (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
+                                      }
+#line 747 "parser.tab.cc" // lalr1.cc:859
     break;
 
 
-#line 729 "parser.tab.cc" // lalr1.cc:859
+#line 751 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -981,8 +1003,8 @@ namespace FrontEnd {
   const unsigned char
   Parser::yyrline_[] =
   {
-       0,   102,   102,   103,   104,   105,   109,   110,   114,   115,
-     119,   123
+       0,   129,   129,   134,   135,   136,   140,   141,   145,   146,
+     150,   154
   };
 
   // Print the state stack on the debug stream.
@@ -1067,10 +1089,10 @@ namespace FrontEnd {
       return undef_token_;
   }
 
-#line 5 "parser.yy" // lalr1.cc:1167
+#line 4 "parser.yy" // lalr1.cc:1167
 } // FrontEnd
-#line 1073 "parser.tab.cc" // lalr1.cc:1167
-#line 142 "parser.yy" // lalr1.cc:1168
+#line 1095 "parser.tab.cc" // lalr1.cc:1167
+#line 178 "parser.yy" // lalr1.cc:1168
 
 
 

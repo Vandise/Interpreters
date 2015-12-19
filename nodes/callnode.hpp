@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 
+#include "abstractnode.hpp"
+
 namespace Runtime
 {
   class Object;  
@@ -12,7 +14,7 @@ namespace Runtime
 namespace Nodes
 {
   class AbstractNode;
-  class CallNode
+  class CallNode : public AbstractNode
   {
     private:
       AbstractNode *receiver;

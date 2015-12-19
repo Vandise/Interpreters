@@ -1,15 +1,29 @@
 %skeleton "lalr1.cc"
 %require  "3.0"
-%debug 
 %defines 
 %define api.namespace {FrontEnd}
 %define parser_class_name {Parser}
+%define parse.trace
 
 %code requires{
+
    namespace FrontEnd {
       class Driver;
       class Scanner;
    }
+   
+   namespace Nodes
+   {
+     class AbstractNode;
+     class LiteralNode;
+     class CallNode;
+   }
+   
+   namespace Runtime
+   {
+     class ValueObject;
+   }
+   
 }
 
 %parse-param { Scanner  &scanner  }
@@ -19,19 +33,32 @@
    #include <iostream>
    #include <cstdlib>
    #include <fstream>
-   
+   #include <map>
+
    /* include for all driver functions */
    #include "driver.hpp"
 
-#undef yylex
-#define yylex scanner.yylex
+   #include "nodes/abstractnode.hpp"
+   #include "nodes/nodes.hpp"
+   #include "nodes/literalnode.hpp"
+   #include "nodes/callnode.hpp"
+
+   #undef yylex
+   #define yylex scanner.yylex
+   
 }
 
 /* token types */
 %union {
    std::string *sval;
    int          ival;
+   Nodes::LiteralNode  *lit_node;
+   Nodes::AbstractNode *abs_node;
 }
+
+/* %type <lit_node> Literal */
+%type <abs_node> Expression Literal Operator
+
 
 %token            CLASS
 %token            FUNC
@@ -99,7 +126,11 @@
 %%
 
 Expressions
-  : Expression
+  : Expression              { 
+                              std::vector<Nodes::AbstractNode *> nodes;
+                              nodes.push_back($1);
+                              driver.set_stack(nodes); 
+                            }
   | Expressions Terminator Expression
   |
   | Expressions Terminator
@@ -116,11 +147,16 @@ Expression
   ;
 
 Literal
-  : INTEGER                { std::cout << "Integer Parsed\n"; }
+  : INTEGER                { $$ = new Nodes::LiteralNode(new Runtime::ValueObject($1)); }
   ;
 
 Operator
-  : Expression PLUS Expression       { std::cout << "Plus Parsed\n"; }
+  : Expression PLUS Expression        {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = $3;
+                                        std::string method = *$2;
+                                        $$ = new Nodes::CallNode(method, $1, arguments); 
+                                      }
   ;
 
 /*

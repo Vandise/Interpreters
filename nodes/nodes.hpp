@@ -15,7 +15,7 @@ namespace Nodes
   class AbstractNode;
   class Nodes
   {
-    private:
+    public:
       std::vector<AbstractNode*> nodes;
     public:
       Nodes();

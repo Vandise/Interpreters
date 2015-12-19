@@ -75,7 +75,6 @@ Context::eval(const char * const filename)
 {
   FrontEnd::Driver driver;
   driver.parse( filename );
-  std::cout << "Results\n";
   driver.print(std::cout) << "\n";
 }
 
