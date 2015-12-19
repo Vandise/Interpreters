@@ -28,6 +28,7 @@ Bootstrapper::run()
   Runtime::StdClass *intClass = objectClass->newSubclass(std::string("Integer"));
 
   intClass->addMethod(std::string("+"),&int_add_method);
+  intClass->addMethod(std::string("-"),&int_subtract_method);
   //std::cout << intClass->hasMethod(std::string("+"));
 
   std::map<int, Runtime::Object*> arguments;

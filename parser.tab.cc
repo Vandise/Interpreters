@@ -746,8 +746,19 @@ namespace FrontEnd {
 #line 747 "parser.tab.cc" // lalr1.cc:859
     break;
 
+  case 12:
+#line 161 "parser.yy" // lalr1.cc:859
+    {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = (yystack_[0].value.abs_node);
+                                        std::string method = *(yystack_[1].value.sval);
+                                        (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
+                                      }
+#line 758 "parser.tab.cc" // lalr1.cc:859
+    break;
 
-#line 751 "parser.tab.cc" // lalr1.cc:859
+
+#line 762 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -915,15 +926,15 @@ namespace FrontEnd {
   const signed char
   Parser::yypact_[] =
   {
-     -10,   -26,     0,   -25,   -26,   -26,   -26,   -26,   -26,   -10,
-     -10,   -25,   -25
+      -7,   -26,     0,   -25,   -26,   -26,   -26,   -26,   -26,    -7,
+      -7,    -7,   -25,   -25,   -25
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
        4,    10,     0,     2,     8,     9,     1,     6,     7,     5,
-       0,     3,    11
+       0,     0,     3,    11,    12
   };
 
   const signed char
@@ -941,7 +952,7 @@ namespace FrontEnd {
   const unsigned char
   Parser::yytable_[] =
   {
-       6,    11,    12,     1,    10,     0,     0,     0,     0,     0,
+       6,    12,    13,    14,    10,    11,     1,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     7,
@@ -952,7 +963,7 @@ namespace FrontEnd {
   const signed char
   Parser::yycheck_[] =
   {
-       0,     9,    10,    13,    29,    -1,    -1,    -1,    -1,    -1,
+       0,     9,    10,    11,    29,    30,    13,    -1,    -1,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    39,
@@ -964,21 +975,21 @@ namespace FrontEnd {
   Parser::yystos_[] =
   {
        0,    13,    58,    60,    61,    62,     0,    39,    56,    59,
-      29,    60,    60
+      29,    30,    60,    60,    60
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
        0,    57,    58,    58,    58,    58,    59,    59,    60,    60,
-      61,    62
+      61,    62,    62
   };
 
   const unsigned char
   Parser::yyr2_[] =
   {
        0,     2,     1,     3,     0,     2,     1,     1,     1,     1,
-       1,     3
+       1,     3,     3
   };
 
 
@@ -1004,7 +1015,7 @@ namespace FrontEnd {
   Parser::yyrline_[] =
   {
        0,   129,   129,   134,   135,   136,   140,   141,   145,   146,
-     150,   154
+     150,   154,   161
   };
 
   // Print the state stack on the debug stream.
@@ -1091,8 +1102,8 @@ namespace FrontEnd {
 
 #line 4 "parser.yy" // lalr1.cc:1167
 } // FrontEnd
-#line 1095 "parser.tab.cc" // lalr1.cc:1167
-#line 178 "parser.yy" // lalr1.cc:1168
+#line 1106 "parser.tab.cc" // lalr1.cc:1167
+#line 185 "parser.yy" // lalr1.cc:1168
 
 
 

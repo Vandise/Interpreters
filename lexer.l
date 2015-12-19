@@ -38,6 +38,11 @@ typedef FrontEnd::Parser::token token;
               return( token::PLUS );
             }
 
+"-"         {
+              yylval->sval = STOKEN(yytext);
+              return( token::MINUS );
+            }
+
 \n          { 
                return( token::NEWLINE );   
             }

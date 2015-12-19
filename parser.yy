@@ -157,6 +157,13 @@ Operator
                                         std::string method = *$2;
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
+
+  | Expression MINUS Expression       {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = $3;
+                                        std::string method = *$2;
+                                        $$ = new Nodes::CallNode(method, $1, arguments); 
+                                      }
   ;
 
 /*

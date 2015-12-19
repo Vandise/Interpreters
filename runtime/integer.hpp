@@ -13,6 +13,15 @@ struct IntAddOp: OperatorMethod<int>
   }
 };
 
-IntAddOp int_add_method;
+struct IntMinusOp: OperatorMethod<int>
+{
+  Runtime::Object* perform(int receiver, int argument)
+  {
+    return new Runtime::ValueObject(receiver - argument);
+  }
+};
+
+IntAddOp    int_add_method;
+IntMinusOp  int_subtract_method;
 
 #endif
