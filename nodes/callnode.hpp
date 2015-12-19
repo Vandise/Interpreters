@@ -6,6 +6,8 @@
 
 #include "abstractnode.hpp"
 
+class Context;
+
 namespace Runtime
 {
   class Object;  
@@ -23,7 +25,7 @@ namespace Nodes
 
     public:
       CallNode(std::string method, AbstractNode *receiver, std::map<int, AbstractNode*> arguments);
-      Runtime::Object* eval();
+      Runtime::Object* eval(Context *context);
   };
 }
 

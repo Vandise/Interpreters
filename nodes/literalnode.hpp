@@ -5,6 +5,7 @@
 #include "abstractnode.hpp"
 #include "../runtime/valueobject.hpp"
 
+class Context;
 
 namespace Runtime
 {
@@ -18,7 +19,7 @@ namespace Nodes
     public:
       Runtime::ValueObject* value;
       LiteralNode(Runtime::ValueObject* value);
-      Runtime::ValueObject* eval();
+      Runtime::ValueObject* eval(Context *context);
   };
 }
 

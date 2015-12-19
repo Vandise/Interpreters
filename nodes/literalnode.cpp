@@ -1,5 +1,5 @@
 #include "literalnode.hpp"
-#include <iostream>
+#include "../context.hpp"
 
 Nodes::LiteralNode::LiteralNode(Runtime::ValueObject* value)
 {
@@ -7,7 +7,7 @@ Nodes::LiteralNode::LiteralNode(Runtime::ValueObject* value)
 }
 
 Runtime::ValueObject*
-Nodes::LiteralNode::eval()
+Nodes::LiteralNode::eval(Context *context)
 {
   return this->value;
 }

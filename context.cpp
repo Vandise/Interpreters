@@ -3,6 +3,7 @@
 #include "runtime.hpp"
 #include "context.hpp"
 #include "driver.hpp"
+#include "nodes/nodes.hpp"
 #include "runtime/stdclass.hpp"
 
 Context::Context(Runtime::Object *currentSelf, Runtime::StdClass *currentClass, Context *parent)
@@ -70,12 +71,13 @@ Context::makeChildContext()
   return new Context(this->currentSelf, this->currentClass, this);
 }
 
-void
+Runtime::Object*
 Context::eval(const char * const filename)
 {
   FrontEnd::Driver driver;
   driver.parse( filename );
-  driver.print(std::cout) << "\n";
+  //driver.print(std::cout) << "\n";
+  return driver.execute(this);
 }
 
 Runtime::Object*

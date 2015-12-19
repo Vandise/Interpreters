@@ -11,14 +11,21 @@
 namespace Nodes
 {
   class Nodes;
+  class AbstractNode;
 }
+
+namespace Runtime
+{
+  class Object;
+}
+
+class Context;
 
 namespace FrontEnd{
 
   class Driver{
     public:
-      Nodes::Nodes *nodes;
-      
+      std::vector<Nodes::AbstractNode*> nodes;
     
        Driver() = default;
     
@@ -27,6 +34,7 @@ namespace FrontEnd{
        void parse( const char *filename );
       
        void set_stack(std::vector<Nodes::AbstractNode*> stack);
+       Runtime::Object* execute(Context *context);
        void add_upper();
        void add_lower();
        void add_word( const std::string &word );

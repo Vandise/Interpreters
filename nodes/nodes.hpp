@@ -18,7 +18,7 @@ namespace Nodes
     public:
       std::vector<AbstractNode*> nodes;
     public:
-      Nodes();
+      Nodes(std::vector<AbstractNode*> nodes);
       void add(AbstractNode* node);
       Runtime::Object* eval(Context *context);
       

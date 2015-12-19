@@ -18,9 +18,7 @@ FrontEnd::Driver::~Driver()
 void
 FrontEnd::Driver::set_stack(std::vector<Nodes::AbstractNode*> stack)
 {
-  std::cout << "Stack Size: ";
-  std::cout << stack.size();
-  this->nodes->nodes = stack;
+  this->nodes = stack;
 }
 
 void 
@@ -96,9 +94,7 @@ void
 FrontEnd::Driver::add_int( int &number )
 {
   Nodes::LiteralNode *node = new Nodes::LiteralNode(new Runtime::ValueObject(number));
-  this->nodes->add(node);
-  std::cout << this->nodes->nodes.size();
-  std::cout << "\n";
+  //this->nodes->add(node);
 }
 
 void
@@ -125,6 +121,7 @@ FrontEnd::Driver::add_char()
 std::ostream& 
 FrontEnd::Driver::print( std::ostream &stream )
 {
+  std::cout << this->nodes.size();
   /*
    stream << "Uppercase: " << uppercase << "\n";
    stream << "Lowercase: " << lowercase << "\n";
@@ -133,4 +130,11 @@ FrontEnd::Driver::print( std::ostream &stream )
    stream << "Characters: " << chars << "\n";
    */
    return(stream);
+}
+
+Runtime::Object*
+FrontEnd::Driver::execute(Context *context)
+{
+  Nodes::Nodes *nodes = new Nodes::Nodes(this->nodes);
+  return nodes->eval(context);
 }

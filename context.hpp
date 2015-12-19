@@ -35,7 +35,7 @@ class Context
     int                hasLocal(std::string name);
     void               setLocal(std::string name, Runtime::Object *value);
     Context*           makeChildContext();
-    void   eval(const char *filename);
+    Runtime::Object*   eval(const char *filename);
     Runtime::Object*   eval(std::string code);
 };
 
