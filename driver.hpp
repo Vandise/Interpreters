@@ -10,14 +10,14 @@
 
 namespace Nodes
 {
-  class AbstractNode;
+  class Nodes;
 }
 
 namespace FrontEnd{
 
   class Driver{
     public:
-      std::vector<Nodes::AbstractNode*> nodes;
+      Nodes::Nodes *nodes;
       
     
        Driver() = default;

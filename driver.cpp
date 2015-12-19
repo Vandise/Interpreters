@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "driver.hpp"
+#include "nodes/nodes.hpp"
 #include "nodes/literalnode.hpp"
 
 FrontEnd::Driver::~Driver()
