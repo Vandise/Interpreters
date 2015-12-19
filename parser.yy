@@ -71,7 +71,8 @@
 %token   <sval>   ASSIGN
 %token   <sval>   COMMENT
 
-/* %token   <sval>   NEWLINE */
+%token   <sval>   NEWLINE 
+/*
 %token   <sval>   WHITESPACE
 
 %token            UPPER
@@ -79,14 +80,50 @@
 %token   <sval>   WORD
 %token            NEWLINE
 %token            CHAR
-
+*/
 
 /* destructor rule for <sval> objects */
 %destructor { if ($$)  { delete ($$); ($$) = nullptr; } } <sval>
 
+%left  "."
+%right "!"
+%left  "*" "/"
+%left  "+" "-"
+%left  ">" ">=" "<" "<="
+%left  "==" "!="
+%left  "&&"
+%left  "||"
+%right "="
+%left  ","
 
 %%
 
+Expressions
+  : Expression
+  | Expressions Terminator Expression
+  |
+  | Expressions Terminator
+  ;
+
+Terminator
+  : NEWLINE
+  | ';'
+  ;
+
+Expression
+  : Literal
+  | Operator
+  ;
+
+Literal
+  : INTEGER                { std::cout << "Integer Parsed\n"; }
+  ;
+
+Operator
+  : Expression PLUS Expression       { std::cout << "Plus Parsed\n"; }
+  ;
+
+/*
 list
   : item
   | list item
@@ -100,6 +137,7 @@ item
   | NEWLINE { driver.add_newline(); }
   | CHAR    { driver.add_char(); }
   ;
+*/
 
 %%
 

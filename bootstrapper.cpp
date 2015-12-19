@@ -35,7 +35,7 @@ Bootstrapper::run()
   arguments[0] = new Runtime::ValueObject(1);
   Runtime::Object *returnValue = int_add_method.call(valobj, arguments);
 
-  std::cout << valobj->call(std::string("+"),arguments)->getValue();
+  //std::cout << valobj->call(std::string("+"),arguments)->getValue();
 
   /*
     Object
@@ -50,6 +50,7 @@ Bootstrapper::run()
   
   */
 
+/*
   std::cout << "\n Val Object Inherits Integer: \n";
   std::cout << valobj->getStdClass()->getName();
   std::cout << "\n";
@@ -57,6 +58,6 @@ Bootstrapper::run()
   std::cout << "Value of returned object: ";
   std::cout << returnValue->getValue();
   std::cout << "\n";
-
+*/
   return new Context(main);
 }

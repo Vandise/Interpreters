@@ -1,6 +1,7 @@
 %{
 
 #include <string>
+#include <iostream>
 #include "scanner.hpp"
 
 
@@ -23,31 +24,25 @@ typedef FrontEnd::Parser::token token;
 
 %%
 
+[\ \t]+
+
+\#.*$
+
 [0-9]+      {
               yylval->ival = (atoi(yytext));
               return( token::INTEGER );
             }
 
-[a-z]       { 
-               return( token::LOWER );     
-            }
-
-[A-Z]       { 
-               return( token::UPPER );     
-            }
-
-[a-zA-Z]+   { 
-               yylval->sval = STOKEN( yytext );  
-               return( token::WORD );      
+"+"         {
+              yylval->sval = STOKEN(yytext);
+              return( token::PLUS );
             }
 
 \n          { 
                return( token::NEWLINE );   
             }
 
-.           { 
-               return( token::CHAR );      
-            }
+
 %%
 
 
