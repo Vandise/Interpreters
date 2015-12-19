@@ -2,12 +2,14 @@
 #define __BOOTSTRAPPER_HPP__ 1
 
 #include "runtime.hpp"
-#include "runtime/stdclass.hpp"
+#include "context.hpp"
+
+class Context;
 
 class Bootstrapper
 {
   public:
-    static void run();
+    static Context* run();
 };
 
 #endif

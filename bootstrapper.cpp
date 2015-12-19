@@ -2,9 +2,11 @@
 
 #include <iostream>
 #include <cstdlib>
+#include  "context.hpp"
+#include "runtime/stdclass.hpp"
 #include "runtime/integer.hpp"
 
-void
+Context*
 Bootstrapper::run()
 {
   Runtime::StdClass *objectClass = new Runtime::StdClass("Object");
@@ -55,4 +57,6 @@ Bootstrapper::run()
   std::cout << "Value of returned object: ";
   std::cout << returnValue->getValue();
   std::cout << "\n";
+
+  return new Context(main);
 }
