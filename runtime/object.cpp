@@ -1,6 +1,7 @@
 #include "object.hpp"
 #include "../runtime.hpp"
-
+#include "stdclass.hpp"
+#include "method.hpp"
 
 Runtime::Object::Object()
 {
@@ -62,9 +63,9 @@ Runtime::Object::setInstanceVariable(std::string name, Runtime::Object *value)
 }
 
 Runtime::Object*
-Runtime::Object::call(std::string method, std::map<std::string, Runtime::Object>)
+Runtime::Object::call(std::string method, std::map<int, Runtime::Object*> arguments)
 {
-  /* TODO */
+  return klass->lookup(method)->call(this, arguments);
 }
 
 Runtime::Object*

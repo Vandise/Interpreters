@@ -1,6 +1,7 @@
 #include "stdclass.hpp"
 #include "valueobject.hpp"
 #include "../runtime.hpp"
+#include "method.hpp"
 
 Runtime::StdClass::StdClass(std::string name)
 {
@@ -52,22 +53,30 @@ Runtime::StdClass::hasConstant(std::string name)
   return 0;
 }
 
-void
+Method*
 Runtime::StdClass::lookup(std::string name)
 {
-  /* TODO - methods */
+  if(methods.count(name) >= 1)
+    return methods[name];
+  if(superClass)
+    return superClass->lookup(name);
+  /* TODO: build exceptions - undefined method here */
 }
 
 int
 Runtime::StdClass::hasMethod(std::string name)
 {
-  /* TODO - methods  */
+  if(methods.count(name) >= 1)
+    return 1;
+  if(superClass)
+    return superClass->hasMethod(name);
+  return 0;
 }
 
 void
-Runtime::StdClass::addMethod(std::string name, std::string method)
+Runtime::StdClass::addMethod(std::string name, Method *method)
 {
-  /* TODO - methods */
+  methods[name] = method;
 }
 
 Runtime::Object*

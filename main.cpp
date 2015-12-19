@@ -29,6 +29,16 @@ main( const int argc, const char **argv )
 
   Runtime::StdClass *intClass = objectClass->newSubclass(std::string("Integer"));
 
+  intClass->addMethod(std::string("+"),&int_add_method);
+  //std::cout << intClass->hasMethod(std::string("+"));
+
+  std::map<int, Runtime::Object*> arguments;
+  Runtime::ValueObject *valobj = new Runtime::ValueObject(1);
+  arguments[0] = new Runtime::ValueObject(1);
+  Runtime::Object *returnValue = int_add_method.call(valobj, arguments);
+
+  std::cout << valobj->call(std::string("+"),arguments)->getValue();
+
   /*
     Object
       klass = Lang::Runtime::getRootClass("Integer")
@@ -41,10 +51,6 @@ main( const int argc, const char **argv )
       => 2
   
   */
-  std::map<int, Runtime::Object*> arguments;
-  Runtime::ValueObject *valobj = new Runtime::ValueObject(1);
-  arguments[0] = new Runtime::ValueObject(1);
-  Runtime::Object *returnValue = int_add_method.call(valobj, arguments);
 
   std::cout << "\n Val Object Inherits Integer: \n";
   std::cout << valobj->getStdClass()->getName();

@@ -6,6 +6,8 @@
 
 #include "object.hpp"
 
+struct Method;
+
 namespace Runtime
 {
   class Object;
@@ -15,7 +17,7 @@ namespace Runtime
       typedef Object super;
       std::string name;
       std::map<std::string, Object*> constants;
-      std::map<std::string, std::string> methods;
+      std::map<std::string, Method*> methods;
       StdClass *superClass;
 
     public:
@@ -26,9 +28,9 @@ namespace Runtime
       void     setConstant(std::string name, Object *value);
       Object*  getConstant(std::string name);
       int      hasConstant(std::string name);
-      void     lookup(std::string name);
+      Method*  lookup(std::string name);
       int      hasMethod(std::string name);
-      void     addMethod(std::string name, std::string method);
+      void     addMethod(std::string name, Method *method);
       Object*  newInstance(int value);
       Object*  newInstance();
       StdClass* newSubclass(std::string name);
