@@ -3,7 +3,7 @@
 
 #include <string>
 #include <map>
-
+#include <boost/variant.hpp>
 
 namespace Runtime
 {
@@ -12,7 +12,7 @@ namespace Runtime
   
   class Object
   {
-    private:
+    protected:
       StdClass *klass;
       std::map<std::string, Object*> instanceVariables;
 
@@ -30,9 +30,9 @@ namespace Runtime
       int      isTrue();
       int      isFalse();
       int      isNil();
+      virtual  boost::variant<int,std::string> getValue();
+      virtual  std::string getName();
 
-    private:
-      void construct(std::string name);
   };
 
 }

@@ -17,7 +17,6 @@ namespace Runtime
       std::map<std::string, Object*> constants;
       std::map<std::string, std::string> methods;
       StdClass *superClass;
-      void construct(std::string name);
 
     public:
       StdClass(std::string name, StdClass *superClass);
@@ -30,7 +29,8 @@ namespace Runtime
       void     lookup(std::string name);
       int      hasMethod(std::string name);
       void     addMethod(std::string name, std::string method);
-      Object*  newInstance(std::string value);
+      Object*  newInstance(int value);
+      Object*  newInstance();
       StdClass* newSubclass(std::string name);
       StdClass* subclass(std::string name);
       int       isSubclass(StdClass *klass);

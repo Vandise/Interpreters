@@ -17,6 +17,7 @@ namespace Runtime
       boost::variant<int,std::string> value;
 
     public:
+      int debug = 2;
       ValueObject(StdClass *klass, boost::variant<int,std::string> value);
       ValueObject(std::string value);
       ValueObject(int value);

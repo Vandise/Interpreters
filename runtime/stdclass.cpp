@@ -1,22 +1,17 @@
 #include "stdclass.hpp"
+#include "valueobject.hpp"
 #include "../runtime.hpp"
 
 Runtime::StdClass::StdClass(std::string name)
 {
-  construct(name);
+  this->name = name;
+  this->superClass = Lang::Runtime::getObjectClass();
 }
 
 Runtime::StdClass::StdClass(std::string name, Runtime::StdClass *superClass)
 {
   this->name = name;
   this->superClass = superClass;
-}
-
-void
-Runtime::StdClass::construct(std::string name)
-{
-  this->name = name;
-  this->superClass = Lang::Runtime::getObjectClass();
 }
 
 std::string
@@ -76,9 +71,15 @@ Runtime::StdClass::addMethod(std::string name, std::string method)
 }
 
 Runtime::Object*
-Runtime::StdClass::newInstance(std::string value)
+Runtime::StdClass::newInstance()
 {
   return new Runtime::Object(this);
+}
+
+Runtime::Object*
+Runtime::StdClass::newInstance(int value)
+{
+  return new Runtime::ValueObject(this, value);
 }
 
 Runtime::StdClass*

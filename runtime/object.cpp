@@ -1,6 +1,7 @@
 #include "object.hpp"
 #include "../runtime.hpp"
 
+
 Runtime::Object::Object()
 {
   /* TODO */
@@ -25,25 +26,19 @@ Runtime::Object::Object(Runtime::StdClass *klass)
 */
 Runtime::Object::Object(std::string name)
 {
-  construct(name);
-}
-
-void
-Runtime::Object::construct(std::string name)
-{
   this->klass = Lang::Runtime::getRootClass(name);
 }
 
 Runtime::StdClass*
 Runtime::Object::getStdClass()
 {
-  return klass;
+  return this->klass;
 }
 
 void
-Runtime::Object::setStdClass(Runtime::StdClass *klass)
+Runtime::Object::setStdClass(Runtime::StdClass *stdClass)
 {
-  this->klass = klass;
+  this->klass = stdClass;
 }
 
 Runtime::Object*
@@ -78,6 +73,7 @@ Runtime::Object::call(std::string method)
   /* TODO */
 }
 
+
 int
 Runtime::Object::isTrue()
 {
@@ -94,4 +90,16 @@ int
 Runtime::Object::isNil()
 {
   return 0;
+}
+
+boost::variant<int,std::string>
+Runtime::Object::getValue()
+{
+  return 0;
+}
+
+std::string
+Runtime::Object::getName()
+{
+  return std::string("ObjectObject");
 }

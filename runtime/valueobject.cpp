@@ -1,4 +1,5 @@
 #include "valueobject.hpp"
+#include "../runtime.hpp"
 
 /*
 
@@ -32,8 +33,8 @@ Runtime::ValueObject::ValueObject(std::string value)
 */
 Runtime::ValueObject::ValueObject(int value)
 {
-  super("Integer");
   this->value = value;
+  this->klass = Lang::Runtime::getRootClass(std::string("Integer"));
 }
 
 /*
