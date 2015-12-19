@@ -24,7 +24,7 @@ class Context
     Context                *parent;
 
   public:
-    Context(Runtime::Object *currentSelf, Runtime::StdClass *currentClass, Context parent);
+    Context(Runtime::Object *currentSelf, Runtime::StdClass *currentClass, Context *parent);
     Context(Runtime::Object *currentSelf, Runtime::StdClass *currentClass);
     Context(Runtime::Object *currentSelf);
     Context();
@@ -35,7 +35,7 @@ class Context
     int                hasLocal(std::string name);
     void               setLocal(std::string name, Runtime::Object *value);
     Context*           makeChildContext();
-    Runtime::Object*   eval(FrontEnd::Driver driver);
+    void   eval(const char *filename);
     Runtime::Object*   eval(std::string code);
 };
 
