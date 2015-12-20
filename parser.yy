@@ -85,8 +85,8 @@
 %token   <sval>   NOT
 %token   <sval>   ASSIGN
 %token   <sval>   COMMENT
-
 %token   <sval>   NEWLINE 
+%token            PRGEND 0     "end of file"
 
 
 /* destructor rule for <sval> objects */
@@ -165,6 +165,12 @@ Operator:
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
   | Expression LT Expression          {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = $3;
+                                        std::string method = *$2;
+                                        $$ = new Nodes::CallNode(method, $1, arguments); 
+                                      }
+  | Expression GT Expression          {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = $3;
                                         std::string method = *$2;

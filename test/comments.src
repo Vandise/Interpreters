@@ -1,0 +1,3 @@
+// this is a comment
+// and will keep going
+// no response - returns NilClass (fix flex to parse empty files though)

@@ -1,0 +1,4 @@
+5 > 4
+// => TrueClass,  value: 1
+5 < 4
+// => FalseClass, value: 0

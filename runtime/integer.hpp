@@ -27,12 +27,20 @@ struct IntLessThanOp: OperatorMethod<int>
   Runtime::Object* perform(int receiver, int argument)
   {
     return Lang::Runtime::toBoolean(receiver < argument);
-    //return new Runtime::ValueObject(receiver < argument);
   }
 };
 
-IntAddOp       int_add_method;
-IntMinusOp     int_subtract_method;
-IntLessThanOp  int_less_than_method;
+struct IntGreaterThanOp: OperatorMethod<int>
+{
+  Runtime::Object* perform(int receiver, int argument)
+  {
+    return Lang::Runtime::toBoolean(receiver > argument);
+  }
+};
+
+IntAddOp         int_add_method;
+IntMinusOp       int_subtract_method;
+IntLessThanOp    int_less_than_method;
+IntGreaterThanOp int_greater_than_method;
 
 #endif

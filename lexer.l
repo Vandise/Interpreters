@@ -6,10 +6,10 @@
 
 
 typedef FrontEnd::Parser::token token;
-
+bool term = false;
 
 #define STOKEN( x ) ( new std::string( x ) )
-/* #define yyterminate() return( token::END ) */
+#define yyterminate() return (term = !term)?Parser::token::PRGEND : YY_NULL
 
 /* msvc2010 requires that we exclude this header file. */
 #define YY_NO_UNISTD_H
@@ -22,11 +22,13 @@ typedef FrontEnd::Parser::token token;
 %option noyywrap 
 %option c++
 
+comment               \#.*$
+
 %%
 
-[\ \t]+     { /* do nothing */ }
+[\ \t]+
 
-\#.*$       { /* do nothing */ }
+"//".*      { /* DO NOTHING */ }
 
 [0-9]+      {
               yylval->ival = (atoi(yytext));
@@ -47,11 +49,16 @@ typedef FrontEnd::Parser::token token;
               yylval->sval = STOKEN(yytext);
               return( token::LT );
             }
+">"         {
+              yylval->sval = STOKEN(yytext);
+              return( token::GT );
+            }
 
 \n          { 
                return( token::NEWLINE );   
             }
 
+.           {  printf("unknown character in input: %c\n", *yytext); }
 
 %%
 

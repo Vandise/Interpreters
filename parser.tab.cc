@@ -792,8 +792,19 @@ namespace FrontEnd {
 #line 793 "parser.tab.cc" // lalr1.cc:859
     break;
 
+  case 14:
+#line 173 "parser.yy" // lalr1.cc:859
+    {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = (yystack_[0].value.abs_node);
+                                        std::string method = *(yystack_[1].value.sval);
+                                        (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
+                                      }
+#line 804 "parser.tab.cc" // lalr1.cc:859
+    break;
 
-#line 797 "parser.tab.cc" // lalr1.cc:859
+
+#line 808 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -954,28 +965,28 @@ namespace FrontEnd {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -23;
+  const signed char Parser::yypact_ninf_ = -22;
 
   const signed char Parser::yytable_ninf_ = -1;
 
   const signed char
   Parser::yypact_[] =
   {
-      -7,   -23,     0,   -22,   -23,   -23,   -23,   -23,   -23,    -7,
-      -7,    -7,    -7,   -22,   -22,   -22,   -22
+      -3,   -22,     0,   -21,   -22,   -22,   -22,   -22,   -22,    -3,
+      -3,    -3,    -3,    -3,   -21,   -21,   -21,   -21,   -21
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
        4,    10,     0,     2,     8,     9,     1,     7,     6,     5,
-       0,     0,     0,     3,    13,    11,    12
+       0,     0,     0,     0,     3,    13,    14,    11,    12
   };
 
   const signed char
   Parser::yypgoto_[] =
   {
-     -23,   -23,   -23,    -8,   -23,   -23
+     -22,   -22,   -22,    -8,   -22,   -22
   };
 
   const signed char
@@ -987,8 +998,8 @@ namespace FrontEnd {
   const unsigned char
   Parser::yytable_[] =
   {
-       6,    13,    14,    15,    16,    10,     1,    11,    12,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     7,     0,
+       6,    14,    15,    16,    17,    18,    10,    11,    12,    13,
+       1,     0,     0,     0,     0,     0,     0,     0,     7,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     8
   };
@@ -996,8 +1007,8 @@ namespace FrontEnd {
   const signed char
   Parser::yycheck_[] =
   {
-       0,     9,    10,    11,    12,    27,    13,    29,    30,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    18,    -1,
+       0,     9,    10,    11,    12,    13,    27,    28,    29,    30,
+      13,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    18,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    39
   };
@@ -1006,21 +1017,21 @@ namespace FrontEnd {
   Parser::yystos_[] =
   {
        0,    13,    57,    59,    60,    61,     0,    18,    39,    58,
-      27,    29,    30,    59,    59,    59,    59
+      27,    28,    29,    30,    59,    59,    59,    59,    59
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
        0,    56,    57,    57,    57,    57,    58,    58,    59,    59,
-      60,    61,    61,    61
+      60,    61,    61,    61,    61
   };
 
   const unsigned char
   Parser::yyr2_[] =
   {
        0,     2,     1,     3,     0,     2,     1,     1,     1,     1,
-       1,     3,     3,     3
+       1,     3,     3,     3,     3
   };
 
 
@@ -1030,15 +1041,15 @@ namespace FrontEnd {
   const char*
   const Parser::yytname_[] =
   {
-  "$end", "error", "$undefined", "CLASS", "FUNC", "IF", "ELSE", "WHILE",
-  "END", "SELF", "NIL", "TRUE", "FALSE", "INTEGER", "FLOAT", "STRING",
-  "IDENTIFIER", "CONSTANT", "SEMICOLON", "COLON", "DOT", "OPEN_PARENT",
-  "CLOSE_PARENT", "AT", "EQ", "LE", "GE", "LT", "GT", "PLUS", "MINUS",
-  "MUL", "DIV", "MOD", "AND", "OR", "NOT", "ASSIGN", "COMMENT", "NEWLINE",
-  "\".\"", "\"!\"", "\"*\"", "\"/\"", "\"+\"", "\"-\"", "\">\"", "\">=\"",
-  "\"<\"", "\"<=\"", "\"==\"", "\"!=\"", "\"&&\"", "\"||\"", "\"=\"",
-  "\",\"", "$accept", "Expressions", "Terminator", "Expression", "Literal",
-  "Operator", YY_NULLPTR
+  "\"end of file\"", "error", "$undefined", "CLASS", "FUNC", "IF", "ELSE",
+  "WHILE", "END", "SELF", "NIL", "TRUE", "FALSE", "INTEGER", "FLOAT",
+  "STRING", "IDENTIFIER", "CONSTANT", "SEMICOLON", "COLON", "DOT",
+  "OPEN_PARENT", "CLOSE_PARENT", "AT", "EQ", "LE", "GE", "LT", "GT",
+  "PLUS", "MINUS", "MUL", "DIV", "MOD", "AND", "OR", "NOT", "ASSIGN",
+  "COMMENT", "NEWLINE", "\".\"", "\"!\"", "\"*\"", "\"/\"", "\"+\"",
+  "\"-\"", "\">\"", "\">=\"", "\"<\"", "\"<=\"", "\"==\"", "\"!=\"",
+  "\"&&\"", "\"||\"", "\"=\"", "\",\"", "$accept", "Expressions",
+  "Terminator", "Expression", "Literal", "Operator", YY_NULLPTR
   };
 
 
@@ -1046,7 +1057,7 @@ namespace FrontEnd {
   Parser::yyrline_[] =
   {
        0,   123,   123,   129,   133,   134,   140,   141,   145,   146,
-     150,   154,   161,   167
+     150,   154,   161,   167,   173
   };
 
   // Print the state stack on the debug stream.
@@ -1133,8 +1144,8 @@ namespace FrontEnd {
 
 #line 4 "parser.yy" // lalr1.cc:1167
 } // FrontEnd
-#line 1137 "parser.tab.cc" // lalr1.cc:1167
-#line 176 "parser.yy" // lalr1.cc:1168
+#line 1148 "parser.tab.cc" // lalr1.cc:1167
+#line 182 "parser.yy" // lalr1.cc:1168
 
 
 

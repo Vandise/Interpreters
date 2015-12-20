@@ -31,6 +31,7 @@ Bootstrapper::run()
   intClass->addMethod(std::string("+"),&int_add_method);
   intClass->addMethod(std::string("-"),&int_subtract_method);
   intClass->addMethod(std::string("<"),&int_less_than_method);
+  intClass->addMethod(std::string(">"),&int_greater_than_method);
   //std::cout << intClass->hasMethod(std::string("+"));
 
   std::map<int, Runtime::Object*> arguments;
