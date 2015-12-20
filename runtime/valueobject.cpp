@@ -11,6 +11,7 @@ Runtime::ValueObject::ValueObject(Runtime::StdClass *klass, boost::variant<int,s
 /* TODO: Call Super after runtime is initialized -- : super(i), J(j) etc */
 {
   this->value = value;
+  this->klass = klass;
 }
 
 /*

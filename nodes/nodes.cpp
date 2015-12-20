@@ -28,13 +28,13 @@ Nodes::Nodes::eval(Context *context)
   for (auto &n : this->nodes) {
     lastEval = n->eval(context);
   }
-/*
-  std::cout << "Class: ";
+
+  std::cout << "Returned Class: ";
   std::cout << lastEval->getStdClass()->getName();
   std::cout << "\n";
   std::cout << "value: ";
   std::cout << lastEval->getValue();
   std::cout << "\n";
-*/
+
   return lastEval;
 }

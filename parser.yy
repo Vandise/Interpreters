@@ -127,13 +127,12 @@ Expressions:
                                             $$ = &driver;
                                           }
   | Expressions Terminator Expression     {
-                                            std::cout << "Expressions terminator expression found \n";
                                             $1->push_node($3);
-                                            $$ = &driver;
+                                            $$ = $1;
                                           }
   |                                       { /* do nothing */ }
   | Expressions Terminator                {
-
+                                            $$ = $1;
                                           }
   ;
 
@@ -160,6 +159,12 @@ Operator:
                                       }
 
   | Expression MINUS Expression       {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = $3;
+                                        std::string method = *$2;
+                                        $$ = new Nodes::CallNode(method, $1, arguments); 
+                                      }
+  | Expression LT Expression          {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = $3;
                                         std::string method = *$2;

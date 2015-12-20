@@ -42,6 +42,11 @@ typedef FrontEnd::Parser::token token;
               yylval->sval = STOKEN(yytext);
               return( token::MINUS );
             }
+            
+"<"         {
+              yylval->sval = STOKEN(yytext);
+              return( token::LT );
+            }
 
 \n          { 
                return( token::NEWLINE );   

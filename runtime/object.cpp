@@ -99,8 +99,9 @@ Runtime::Object::getValue()
   return 0;
 }
 
+
 std::string
 Runtime::Object::getName()
 {
-  return std::string("ObjectObject");
+  return std::string("Object");
 }

@@ -23,12 +23,14 @@ Bootstrapper::run()
   objectClass->setConstant("Object", objectClass); // woo recursion! 
   objectClass->setConstant("Class", classClass);
 
-  Lang::Runtime::nilObject = objectClass->newSubclass(std::string("NilClass"))->newInstance(0);
-
+  Lang::Runtime::nilObject    = objectClass->newSubclass(std::string("NilClass"))->newInstance(0);
+  Lang::Runtime::trueObject   = objectClass->newSubclass(std::string("TrueClass"))->newInstance(1);
+  Lang::Runtime::falseObject  = objectClass->newSubclass(std::string("FalseClass"))->newInstance(0);
   Runtime::StdClass *intClass = objectClass->newSubclass(std::string("Integer"));
 
   intClass->addMethod(std::string("+"),&int_add_method);
   intClass->addMethod(std::string("-"),&int_subtract_method);
+  intClass->addMethod(std::string("<"),&int_less_than_method);
   //std::cout << intClass->hasMethod(std::string("+"));
 
   std::map<int, Runtime::Object*> arguments;

@@ -733,57 +733,67 @@ namespace FrontEnd {
   case 3:
 #line 129 "parser.yy" // lalr1.cc:859
     {
-                                            std::cout << "Expressions terminator expression found \n";
                                             (yystack_[2].value.driver)->push_node((yystack_[0].value.abs_node));
-                                            (yylhs.value.driver) = &driver;
+                                            (yylhs.value.driver) = (yystack_[2].value.driver);
                                           }
-#line 741 "parser.tab.cc" // lalr1.cc:859
+#line 740 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 4:
-#line 134 "parser.yy" // lalr1.cc:859
+#line 133 "parser.yy" // lalr1.cc:859
     { /* do nothing */ }
-#line 747 "parser.tab.cc" // lalr1.cc:859
+#line 746 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 5:
-#line 135 "parser.yy" // lalr1.cc:859
+#line 134 "parser.yy" // lalr1.cc:859
     {
-
+                                            (yylhs.value.driver) = (yystack_[1].value.driver);
                                           }
-#line 755 "parser.tab.cc" // lalr1.cc:859
+#line 754 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 10:
-#line 151 "parser.yy" // lalr1.cc:859
+#line 150 "parser.yy" // lalr1.cc:859
     { (yylhs.value.abs_node) = new Nodes::LiteralNode(new Runtime::ValueObject((yystack_[0].value.ival))); }
-#line 761 "parser.tab.cc" // lalr1.cc:859
+#line 760 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 11:
-#line 155 "parser.yy" // lalr1.cc:859
+#line 154 "parser.yy" // lalr1.cc:859
     {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = (yystack_[0].value.abs_node);
                                         std::string method = *(yystack_[1].value.sval);
                                         (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
                                       }
-#line 772 "parser.tab.cc" // lalr1.cc:859
+#line 771 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 12:
-#line 162 "parser.yy" // lalr1.cc:859
+#line 161 "parser.yy" // lalr1.cc:859
     {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = (yystack_[0].value.abs_node);
                                         std::string method = *(yystack_[1].value.sval);
                                         (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
                                       }
-#line 783 "parser.tab.cc" // lalr1.cc:859
+#line 782 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 13:
+#line 167 "parser.yy" // lalr1.cc:859
+    {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = (yystack_[0].value.abs_node);
+                                        std::string method = *(yystack_[1].value.sval);
+                                        (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
+                                      }
+#line 793 "parser.tab.cc" // lalr1.cc:859
     break;
 
 
-#line 787 "parser.tab.cc" // lalr1.cc:859
+#line 797 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -944,28 +954,28 @@ namespace FrontEnd {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -26;
+  const signed char Parser::yypact_ninf_ = -23;
 
   const signed char Parser::yytable_ninf_ = -1;
 
   const signed char
   Parser::yypact_[] =
   {
-      -7,   -26,     0,   -25,   -26,   -26,   -26,   -26,   -26,    -7,
-      -7,    -7,   -25,   -25,   -25
+      -7,   -23,     0,   -22,   -23,   -23,   -23,   -23,   -23,    -7,
+      -7,    -7,    -7,   -22,   -22,   -22,   -22
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
        4,    10,     0,     2,     8,     9,     1,     7,     6,     5,
-       0,     0,     3,    11,    12
+       0,     0,     0,     3,    13,    11,    12
   };
 
   const signed char
   Parser::yypgoto_[] =
   {
-     -26,   -26,   -26,    -8,   -26,   -26
+     -23,   -23,   -23,    -8,   -23,   -23
   };
 
   const signed char
@@ -977,7 +987,7 @@ namespace FrontEnd {
   const unsigned char
   Parser::yytable_[] =
   {
-       6,    12,    13,    14,    10,    11,     1,     0,     0,     0,
+       6,    13,    14,    15,    16,    10,     1,    11,    12,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     7,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     8
@@ -986,7 +996,7 @@ namespace FrontEnd {
   const signed char
   Parser::yycheck_[] =
   {
-       0,     9,    10,    11,    29,    30,    13,    -1,    -1,    -1,
+       0,     9,    10,    11,    12,    27,    13,    29,    30,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    18,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    39
@@ -996,21 +1006,21 @@ namespace FrontEnd {
   Parser::yystos_[] =
   {
        0,    13,    57,    59,    60,    61,     0,    18,    39,    58,
-      29,    30,    59,    59,    59
+      27,    29,    30,    59,    59,    59,    59
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
        0,    56,    57,    57,    57,    57,    58,    58,    59,    59,
-      60,    61,    61
+      60,    61,    61,    61
   };
 
   const unsigned char
   Parser::yyr2_[] =
   {
        0,     2,     1,     3,     0,     2,     1,     1,     1,     1,
-       1,     3,     3
+       1,     3,     3,     3
   };
 
 
@@ -1035,8 +1045,8 @@ namespace FrontEnd {
   const unsigned char
   Parser::yyrline_[] =
   {
-       0,   123,   123,   129,   134,   135,   141,   142,   146,   147,
-     151,   155,   162
+       0,   123,   123,   129,   133,   134,   140,   141,   145,   146,
+     150,   154,   161,   167
   };
 
   // Print the state stack on the debug stream.
@@ -1123,8 +1133,8 @@ namespace FrontEnd {
 
 #line 4 "parser.yy" // lalr1.cc:1167
 } // FrontEnd
-#line 1127 "parser.tab.cc" // lalr1.cc:1167
-#line 171 "parser.yy" // lalr1.cc:1168
+#line 1137 "parser.tab.cc" // lalr1.cc:1167
+#line 176 "parser.yy" // lalr1.cc:1168
 
 
 
