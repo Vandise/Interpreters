@@ -48,18 +48,6 @@
    
 }
 
-/* token types */
-%union {
-   std::string *sval;
-   int          ival;
-   Nodes::LiteralNode  *lit_node;
-   Nodes::AbstractNode *abs_node;
-}
-
-/* %type <lit_node> Literal */
-%type <abs_node> Expression Literal Operator
-
-
 %token            CLASS
 %token            FUNC
 %token            IF
@@ -99,15 +87,7 @@
 %token   <sval>   COMMENT
 
 %token   <sval>   NEWLINE 
-/*
-%token   <sval>   WHITESPACE
 
-%token            UPPER
-%token            LOWER
-%token   <sval>   WORD
-%token            NEWLINE
-%token            CHAR
-*/
 
 /* destructor rule for <sval> objects */
 %destructor { if ($$)  { delete ($$); ($$) = nullptr; } } <sval>
@@ -123,35 +103,56 @@
 %right "="
 %left  ","
 
+/* token types */
+%union {
+   std::string                        *sval;
+   int                                 ival;
+   Nodes::LiteralNode                 *lit_node;
+   Nodes::AbstractNode                *abs_node;
+   std::vector<Nodes::AbstractNode *> *expressions;
+   FrontEnd::Driver                   *driver;
+}
+
+
+%type <abs_node>     Expression Literal Operator
+%type <driver>       Expressions
+
 %%
 
-Expressions
-  : Expression              { 
-                              std::vector<Nodes::AbstractNode *> nodes;
-                              nodes.push_back($1);
-                              driver.set_stack(nodes); 
-                            }
-  | Expressions Terminator Expression
-  |
-  | Expressions Terminator
+Expressions: 
+    Expression                            { 
+                                            std::vector<Nodes::AbstractNode *> nodes;
+                                            nodes.push_back($1);
+                                            driver.set_stack(nodes);
+                                            $$ = &driver;
+                                          }
+  | Expressions Terminator Expression     {
+                                            std::cout << "Expressions terminator expression found \n";
+                                            $1->push_node($3);
+                                            $$ = &driver;
+                                          }
+  |                                       { /* do nothing */ }
+  | Expressions Terminator                {
+
+                                          }
   ;
 
-Terminator
-  : NEWLINE
-  | ';'
+Terminator: 
+  NEWLINE
+  | SEMICOLON
   ;
 
-Expression
-  : Literal
+Expression:
+  Literal
   | Operator
   ;
 
-Literal
-  : INTEGER                { $$ = new Nodes::LiteralNode(new Runtime::ValueObject($1)); }
+Literal:
+  INTEGER                { $$ = new Nodes::LiteralNode(new Runtime::ValueObject($1)); }
   ;
 
-Operator
-  : Expression PLUS Expression        {
+Operator:
+    Expression PLUS Expression        {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = $3;
                                         std::string method = *$2;
@@ -166,21 +167,6 @@ Operator
                                       }
   ;
 
-/*
-list
-  : item
-  | list item
-  ;
-
-item
-  : INTEGER { driver.add_int( $1 ); }
-  | UPPER   { driver.add_upper(); }
-  | LOWER   { driver.add_lower(); }
-  | WORD    { driver.add_word( *$1 ); }
-  | NEWLINE { driver.add_newline(); }
-  | CHAR    { driver.add_char(); }
-  ;
-*/
 
 %%
 

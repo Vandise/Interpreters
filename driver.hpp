@@ -25,7 +25,6 @@ namespace FrontEnd{
 
   class Driver{
     public:
-      std::vector<Nodes::AbstractNode*> nodes;
     
        Driver() = default;
     
@@ -33,6 +32,7 @@ namespace FrontEnd{
     
        void parse( const char *filename );      
        void set_stack(std::vector<Nodes::AbstractNode*> stack);
+       void push_node(Nodes::AbstractNode *node);
        Runtime::Object* execute(Context *context);
     
 

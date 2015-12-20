@@ -2,10 +2,12 @@
 #include <fstream>
 #include <cassert>
 
+#include "nodestack.hpp"
 #include "driver.hpp"
 #include "nodes/nodes.hpp"
 #include "nodes/literalnode.hpp"
 #include "nodes/callnode.hpp"
+#include "context.hpp"
 
 FrontEnd::Driver::~Driver()
 { 
@@ -18,7 +20,7 @@ FrontEnd::Driver::~Driver()
 void
 FrontEnd::Driver::set_stack(std::vector<Nodes::AbstractNode*> stack)
 {
-  this->nodes = stack;
+  NodeStack::stack = stack;
 }
 
 void 
@@ -56,9 +58,15 @@ FrontEnd::Driver::parse( const char * const filename )
    parser->parse();
 }
 
+void
+FrontEnd::Driver::push_node(Nodes::AbstractNode *node)
+{
+  NodeStack::stack.push_back(node);
+}
+
 Runtime::Object*
 FrontEnd::Driver::execute(Context *context)
 {
-  Nodes::Nodes *nodes = new Nodes::Nodes(this->nodes);
-  return nodes->eval(context);
+  Nodes::Nodes *node = new Nodes::Nodes(NodeStack::stack);
+  return node->eval(context);
 }

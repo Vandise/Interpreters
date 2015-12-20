@@ -24,9 +24,9 @@ typedef FrontEnd::Parser::token token;
 
 %%
 
-[\ \t]+
+[\ \t]+     { /* do nothing */ }
 
-\#.*$
+\#.*$       { /* do nothing */ }
 
 [0-9]+      {
               yylval->ival = (atoi(yytext));
