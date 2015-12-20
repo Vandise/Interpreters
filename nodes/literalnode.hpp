@@ -17,9 +17,9 @@ namespace Nodes
   class LiteralNode : public AbstractNode
   {
     public:
-      Runtime::ValueObject* value;
-      LiteralNode(Runtime::ValueObject* value);
-      Runtime::ValueObject* eval(Context *context);
+      Runtime::Object* value;
+      LiteralNode(Runtime::Object* value);
+      Runtime::Object* eval(Context *context);
   };
 }
 

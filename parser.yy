@@ -24,6 +24,11 @@
      class ValueObject;
    }
    
+   namespace Lang
+   {
+     class Runtime;
+   }
+   
 }
 
 %parse-param { Scanner  &scanner  }
@@ -42,6 +47,7 @@
    #include "nodes/nodes.hpp"
    #include "nodes/literalnode.hpp"
    #include "nodes/callnode.hpp"
+   #include "runtime.hpp"
 
    #undef yylex
    #define yylex scanner.yylex
@@ -147,7 +153,10 @@ Expression:
   ;
 
 Literal:
-  INTEGER                { $$ = new Nodes::LiteralNode(new Runtime::ValueObject($1)); }
+    INTEGER                { $$ = new Nodes::LiteralNode(new Runtime::ValueObject($1)); }
+  | TRUE                   { $$ = new Nodes::LiteralNode(Lang::Runtime::trueObject); }
+  | FALSE                  { $$ = new Nodes::LiteralNode(Lang::Runtime::falseObject); }
+  | NIL                    { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
   ;
 
 Operator:

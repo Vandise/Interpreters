@@ -34,6 +34,16 @@ comment               \#.*$
               yylval->ival = (atoi(yytext));
               return( token::INTEGER );
             }
+            
+"end"       { return(token::END);   }
+"func"      { return(token::FUNC);  }
+"class"     { return(token::CLASS); }
+"if"        { return(token::IF);    }
+"else"      { return(token::ELSE);  }
+"while"     { return(token::WHILE); }
+"true"      { return(token::TRUE);  }
+"false"     { return(token::FALSE); }
+"nil"       { return(token::NIL);   }
 
 "+"         {
               yylval->sval = STOKEN(yytext);
