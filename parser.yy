@@ -47,6 +47,7 @@
    #include "nodes/nodes.hpp"
    #include "nodes/literalnode.hpp"
    #include "nodes/callnode.hpp"
+   #include "nodes/selfnode.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -157,6 +158,7 @@ Literal:
   | TRUE                   { $$ = new Nodes::LiteralNode(Lang::Runtime::trueObject); }
   | FALSE                  { $$ = new Nodes::LiteralNode(Lang::Runtime::falseObject); }
   | NIL                    { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
+  | SELF                   { $$ = new Nodes::SelfNode(); }
   ;
 
 Operator:

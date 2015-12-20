@@ -1,3 +1,4 @@
+#include <sstream>
 #include "object.hpp"
 #include "../runtime.hpp"
 #include "stdclass.hpp"
@@ -93,10 +94,20 @@ Runtime::Object::isNil()
   return 0;
 }
 
+//
+// Future Node:
+// Get Value should probably allow Object returns as well.
+// GetValue() currently is just used to evaluate and object and its value
+// maybe change to a toString() method.
+//
 boost::variant<int,std::string>
 Runtime::Object::getValue()
 {
-  return 0;
+  const void * address = static_cast<const void*>(this);
+  std::stringstream ss;
+  ss << address;
+  std::string addr = ss.str();
+  return std::string("<"+getName()+" "+addr+">");
 }
 
 

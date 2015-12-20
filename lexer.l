@@ -44,6 +44,7 @@ comment               \#.*$
 "true"      { return(token::TRUE);  }
 "false"     { return(token::FALSE); }
 "nil"       { return(token::NIL);   }
+"self"      { return(token::SELF);  }
 
 "+"         {
               yylval->sval = STOKEN(yytext);
