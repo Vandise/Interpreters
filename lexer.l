@@ -55,6 +55,26 @@ comment               \#.*$
               yylval->sval = STOKEN(yytext);
               return( token::MINUS );
             }
+
+"*"         {
+              yylval->sval = STOKEN(yytext);
+              return( token::MUL );
+            }
+
+"/"         {
+              yylval->sval = STOKEN(yytext);
+              return( token::DIV );
+            }
+            
+"("         {
+              yylval->sval = STOKEN(yytext);
+              return( token::OPEN_PAREN );
+            }
+
+")"         {
+              yylval->sval = STOKEN(yytext);
+              return( token::CLOSE_PAREN );
+            }           
             
 "<"         {
               yylval->sval = STOKEN(yytext);

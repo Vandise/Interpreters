@@ -22,6 +22,22 @@ struct IntMinusOp: OperatorMethod<int>
   }
 };
 
+struct IntMultOp: OperatorMethod<int>
+{
+  Runtime::Object* perform(int receiver, int argument)
+  {
+    return new Runtime::ValueObject(receiver * argument);
+  }
+};
+
+struct IntDivOp: OperatorMethod<int>
+{
+  Runtime::Object* perform(int receiver, int argument)
+  {
+    return new Runtime::ValueObject(receiver / argument);
+  }
+};
+
 struct IntLessThanOp: OperatorMethod<int>
 {
   Runtime::Object* perform(int receiver, int argument)
@@ -40,6 +56,9 @@ struct IntGreaterThanOp: OperatorMethod<int>
 
 IntAddOp         int_add_method;
 IntMinusOp       int_subtract_method;
+IntMultOp        int_multiply_method;
+IntDivOp         int_divide_method;
+
 IntLessThanOp    int_less_than_method;
 IntGreaterThanOp int_greater_than_method;
 

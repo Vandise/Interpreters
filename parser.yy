@@ -74,8 +74,8 @@
 %token   <sval>   SEMICOLON
 %token   <sval>   COLON
 %token   <sval>   DOT
-%token   <sval>   OPEN_PARENT
-%token   <sval>   CLOSE_PARENT
+%token   <sval>   OPEN_PAREN
+%token   <sval>   CLOSE_PAREN
 %token   <sval>   AT
 %token   <sval>   EQ
 %token   <sval>   LE
@@ -151,6 +151,7 @@ Terminator:
 Expression:
   Literal
   | Operator
+  | OPEN_PAREN Expression CLOSE_PAREN     { $$ = $2; }
   ;
 
 Literal:
@@ -170,6 +171,18 @@ Operator:
                                       }
 
   | Expression MINUS Expression       {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = $3;
+                                        std::string method = *$2;
+                                        $$ = new Nodes::CallNode(method, $1, arguments); 
+                                      }
+  | Expression MUL Expression         {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = $3;
+                                        std::string method = *$2;
+                                        $$ = new Nodes::CallNode(method, $1, arguments); 
+                                      }
+  | Expression DIV Expression         {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = $3;
                                         std::string method = *$2;
