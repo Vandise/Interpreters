@@ -68,14 +68,14 @@
 %token   <ival>   INTEGER
 %token            FLOAT
 %token            STRING
-%token            IDENTIFIER
+%token   <sval>   IDENTIFIER
 %token            CONSTANT
 
 %token   <sval>   SEMICOLON
 %token   <sval>   COLON
 %token   <sval>   DOT
-%token   <sval>   OPEN_PAREN
-%token   <sval>   CLOSE_PAREN
+%token            OPEN_PAREN
+%token            CLOSE_PAREN
 %token   <sval>   AT
 %token   <sval>   EQ
 %token   <sval>   LE
@@ -121,7 +121,7 @@
 }
 
 
-%type <abs_node>     Expression Literal Operator
+%type <abs_node>     Expression Literal Operator GetLocal SetLocal
 %type <driver>       Expressions
 
 %%
@@ -151,6 +151,8 @@ Terminator:
 Expression:
   Literal
   | Operator
+  | GetLocal
+  | SetLocal
   | OPEN_PAREN Expression CLOSE_PAREN     { $$ = $2; }
   ;
 
@@ -202,6 +204,13 @@ Operator:
                                       }
   ;
 
+GetLocal:
+  IDENTIFIER                       { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
+  ;
+
+SetLocal:
+  IDENTIFIER ASSIGN Expression     { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
+  ;
 
 %%
 

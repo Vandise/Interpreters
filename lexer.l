@@ -34,6 +34,10 @@ comment               \#.*$
               yylval->ival = (atoi(yytext));
               return( token::INTEGER );
             }
+
+\n          { 
+               return( token::NEWLINE );   
+            }
             
 "end"       { return(token::END);   }
 "func"      { return(token::FUNC);  }
@@ -45,6 +49,11 @@ comment               \#.*$
 "false"     { return(token::FALSE); }
 "nil"       { return(token::NIL);   }
 "self"      { return(token::SELF);  }
+
+[_a-zA-Z\\?\\!]+  {
+                    yylval->sval = STOKEN(yytext);
+                    return( token::IDENTIFIER );
+                  }
 
 "+"         {
               yylval->sval = STOKEN(yytext);
@@ -67,12 +76,10 @@ comment               \#.*$
             }
             
 "("         {
-              yylval->sval = STOKEN(yytext);
               return( token::OPEN_PAREN );
             }
 
 ")"         {
-              yylval->sval = STOKEN(yytext);
               return( token::CLOSE_PAREN );
             }           
             
@@ -84,9 +91,9 @@ comment               \#.*$
               yylval->sval = STOKEN(yytext);
               return( token::GT );
             }
-
-\n          { 
-               return( token::NEWLINE );   
+"="         {
+              yylval->sval = STOKEN(yytext);
+              return( token::ASSIGN );
             }
 
 .           {  printf("unknown character in input: %c\n", *yytext); }
