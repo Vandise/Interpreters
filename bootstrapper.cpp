@@ -27,6 +27,7 @@ Bootstrapper::run()
   Lang::Runtime::trueObject   = objectClass->newSubclass(std::string("TrueClass"))->newInstance(1);
   Lang::Runtime::falseObject  = objectClass->newSubclass(std::string("FalseClass"))->newInstance(0);
   Runtime::StdClass *intClass = objectClass->newSubclass(std::string("Integer"));
+  Runtime::StdClass *strClass = objectClass->newSubclass(std::string("String"));
 
   intClass->addMethod(std::string("+"),&int_add_method);
   intClass->addMethod(std::string("-"),&int_subtract_method);

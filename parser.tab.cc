@@ -344,151 +344,158 @@ namespace FrontEnd {
     // User destructor.
     switch (yysym.type_get ())
     {
-            case 16: // IDENTIFIER
+            case 15: // STRING
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 352 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 18: // SEMICOLON
+      case 16: // IDENTIFIER
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 359 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 19: // COLON
+      case 18: // SEMICOLON
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 366 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 20: // DOT
+      case 19: // COLON
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 373 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 23: // AT
+      case 20: // DOT
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 380 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 24: // EQ
+      case 23: // AT
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 387 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 25: // LE
+      case 24: // EQ
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 394 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 26: // GE
+      case 25: // LE
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 401 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 27: // LT
+      case 26: // GE
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 408 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 28: // GT
+      case 27: // LT
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 415 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 29: // PLUS
+      case 28: // GT
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 422 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 30: // MINUS
+      case 29: // PLUS
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 429 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 31: // MUL
+      case 30: // MINUS
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 436 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 32: // DIV
+      case 31: // MUL
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 443 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 33: // MOD
+      case 32: // DIV
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 450 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 34: // AND
+      case 33: // MOD
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 457 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 35: // OR
+      case 34: // AND
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 464 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 36: // NOT
+      case 35: // OR
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 471 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 37: // ASSIGN
+      case 36: // NOT
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 478 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 38: // COMMENT
+      case 37: // ASSIGN
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 485 "parser.tab.cc" // lalr1.cc:617
         break;
 
-      case 39: // NEWLINE
+      case 38: // COMMENT
 
 #line 101 "parser.yy" // lalr1.cc:617
         { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
 #line 492 "parser.tab.cc" // lalr1.cc:617
+        break;
+
+      case 39: // NEWLINE
+
+#line 101 "parser.yy" // lalr1.cc:617
+        { if ((yysym.value.sval))  { delete ((yysym.value.sval)); ((yysym.value.sval)) = nullptr; } }
+#line 499 "parser.tab.cc" // lalr1.cc:617
         break;
 
 
@@ -723,7 +730,7 @@ namespace FrontEnd {
                                             driver.set_stack(nodes);
                                             (yylhs.value.driver) = &driver;
                                           }
-#line 727 "parser.tab.cc" // lalr1.cc:859
+#line 734 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 3:
@@ -732,13 +739,13 @@ namespace FrontEnd {
                                             (yystack_[2].value.driver)->push_node((yystack_[0].value.abs_node));
                                             (yylhs.value.driver) = (yystack_[2].value.driver);
                                           }
-#line 736 "parser.tab.cc" // lalr1.cc:859
+#line 743 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 4:
 #line 141 "parser.yy" // lalr1.cc:859
     { /* do nothing */ }
-#line 742 "parser.tab.cc" // lalr1.cc:859
+#line 749 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 5:
@@ -746,119 +753,125 @@ namespace FrontEnd {
     {
                                             (yylhs.value.driver) = (yystack_[1].value.driver);
                                           }
-#line 750 "parser.tab.cc" // lalr1.cc:859
+#line 757 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 12:
 #line 157 "parser.yy" // lalr1.cc:859
     { (yylhs.value.abs_node) = (yystack_[1].value.abs_node); }
-#line 756 "parser.tab.cc" // lalr1.cc:859
+#line 763 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 13:
 #line 161 "parser.yy" // lalr1.cc:859
     { (yylhs.value.abs_node) = new Nodes::LiteralNode(new Runtime::ValueObject((yystack_[0].value.ival))); }
-#line 762 "parser.tab.cc" // lalr1.cc:859
+#line 769 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 14:
 #line 162 "parser.yy" // lalr1.cc:859
-    { (yylhs.value.abs_node) = new Nodes::LiteralNode(Lang::Runtime::trueObject); }
-#line 768 "parser.tab.cc" // lalr1.cc:859
+    { (yylhs.value.abs_node) = new Nodes::LiteralNode(new Runtime::ValueObject(*(yystack_[0].value.sval))); }
+#line 775 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 15:
 #line 163 "parser.yy" // lalr1.cc:859
-    { (yylhs.value.abs_node) = new Nodes::LiteralNode(Lang::Runtime::falseObject); }
-#line 774 "parser.tab.cc" // lalr1.cc:859
+    { (yylhs.value.abs_node) = new Nodes::LiteralNode(Lang::Runtime::trueObject); }
+#line 781 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 16:
 #line 164 "parser.yy" // lalr1.cc:859
-    { (yylhs.value.abs_node) = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
-#line 780 "parser.tab.cc" // lalr1.cc:859
+    { (yylhs.value.abs_node) = new Nodes::LiteralNode(Lang::Runtime::falseObject); }
+#line 787 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 17:
 #line 165 "parser.yy" // lalr1.cc:859
-    { (yylhs.value.abs_node) = new Nodes::SelfNode(); }
-#line 786 "parser.tab.cc" // lalr1.cc:859
+    { (yylhs.value.abs_node) = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
+#line 793 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 18:
-#line 169 "parser.yy" // lalr1.cc:859
-    {
-                                        std::map<int, Nodes::AbstractNode*> arguments;
-                                        arguments[0] = (yystack_[0].value.abs_node);
-                                        std::string method = *(yystack_[1].value.sval);
-                                        (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
-                                      }
-#line 797 "parser.tab.cc" // lalr1.cc:859
+#line 166 "parser.yy" // lalr1.cc:859
+    { (yylhs.value.abs_node) = new Nodes::SelfNode(); }
+#line 799 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 19:
-#line 176 "parser.yy" // lalr1.cc:859
+#line 170 "parser.yy" // lalr1.cc:859
     {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = (yystack_[0].value.abs_node);
                                         std::string method = *(yystack_[1].value.sval);
                                         (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
                                       }
-#line 808 "parser.tab.cc" // lalr1.cc:859
+#line 810 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 20:
-#line 182 "parser.yy" // lalr1.cc:859
+#line 177 "parser.yy" // lalr1.cc:859
     {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = (yystack_[0].value.abs_node);
                                         std::string method = *(yystack_[1].value.sval);
                                         (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
                                       }
-#line 819 "parser.tab.cc" // lalr1.cc:859
+#line 821 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 21:
-#line 188 "parser.yy" // lalr1.cc:859
+#line 183 "parser.yy" // lalr1.cc:859
     {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = (yystack_[0].value.abs_node);
                                         std::string method = *(yystack_[1].value.sval);
                                         (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
                                       }
-#line 830 "parser.tab.cc" // lalr1.cc:859
+#line 832 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 22:
-#line 194 "parser.yy" // lalr1.cc:859
+#line 189 "parser.yy" // lalr1.cc:859
     {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = (yystack_[0].value.abs_node);
                                         std::string method = *(yystack_[1].value.sval);
                                         (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
                                       }
-#line 841 "parser.tab.cc" // lalr1.cc:859
+#line 843 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 23:
-#line 200 "parser.yy" // lalr1.cc:859
+#line 195 "parser.yy" // lalr1.cc:859
     {
                                         std::map<int, Nodes::AbstractNode*> arguments;
                                         arguments[0] = (yystack_[0].value.abs_node);
                                         std::string method = *(yystack_[1].value.sval);
                                         (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
                                       }
-#line 852 "parser.tab.cc" // lalr1.cc:859
+#line 854 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 24:
-#line 209 "parser.yy" // lalr1.cc:859
-    { (yylhs.value.abs_node) = new Nodes::LocalAssignNode(*(yystack_[2].value.sval), (yystack_[0].value.abs_node)); }
-#line 858 "parser.tab.cc" // lalr1.cc:859
+#line 201 "parser.yy" // lalr1.cc:859
+    {
+                                        std::map<int, Nodes::AbstractNode*> arguments;
+                                        arguments[0] = (yystack_[0].value.abs_node);
+                                        std::string method = *(yystack_[1].value.sval);
+                                        (yylhs.value.abs_node) = new Nodes::CallNode(method, (yystack_[2].value.abs_node), arguments); 
+                                      }
+#line 865 "parser.tab.cc" // lalr1.cc:859
     break;
 
   case 25:
-#line 213 "parser.yy" // lalr1.cc:859
+#line 210 "parser.yy" // lalr1.cc:859
+    { (yylhs.value.abs_node) = new Nodes::LocalAssignNode(*(yystack_[2].value.sval), (yystack_[0].value.abs_node)); }
+#line 871 "parser.tab.cc" // lalr1.cc:859
+    break;
+
+  case 26:
+#line 214 "parser.yy" // lalr1.cc:859
     {
               // Evaluate "my_local" as a local variable 
               // since we cant have a function (with no arguments and called without parens) 
@@ -866,11 +879,11 @@ namespace FrontEnd {
                           std::map<int, Nodes::AbstractNode*> arguments;
                           (yylhs.value.abs_node) = new Nodes::CallNode(*(yystack_[0].value.sval), NULL, arguments);
                        }
-#line 870 "parser.tab.cc" // lalr1.cc:859
+#line 883 "parser.tab.cc" // lalr1.cc:859
     break;
 
 
-#line 874 "parser.tab.cc" // lalr1.cc:859
+#line 887 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -1038,76 +1051,76 @@ namespace FrontEnd {
   const signed char
   Parser::yypact_[] =
   {
-      -7,   -37,   -37,   -37,   -37,   -37,   -36,    -7,     0,    13,
-     -37,   -37,   -37,   -37,    -7,     5,   -37,   -37,   -37,    -7,
-      -7,    -7,    -7,    -7,    -7,    -7,    13,   -37,    13,    13,
-      13,    13,    13,    13,    13
+      17,   -37,   -37,   -37,   -37,   -37,   -37,   -36,    17,     0,
+      13,   -37,   -37,   -37,   -37,    17,   -19,   -37,   -37,   -37,
+      17,    17,    17,    17,    17,    17,    17,    13,   -37,    13,
+      13,    13,    13,    13,    13,    13
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
-       4,    17,    16,    14,    15,    13,    25,     0,     0,     2,
-       8,     9,    10,    11,     0,     0,     1,     7,     6,     5,
-       0,     0,     0,     0,     0,     0,    24,    12,     3,    22,
-      23,    18,    19,    20,    21
+       4,    18,    17,    15,    16,    13,    14,    26,     0,     0,
+       2,     8,     9,    10,    11,     0,     0,     1,     7,     6,
+       5,     0,     0,     0,     0,     0,     0,    25,    12,     3,
+      23,    24,    19,    20,    21,    22
   };
 
   const signed char
   Parser::yypgoto_[] =
   {
-     -37,   -37,   -37,     1,   -37,   -37,   -37,   -37
+     -37,   -37,   -37,    -1,   -37,   -37,   -37,   -37
   };
 
   const signed char
   Parser::yydefgoto_[] =
   {
-      -1,     8,    19,     9,    10,    11,    12,    13
+      -1,     9,    20,    10,    11,    12,    13,    14
   };
 
   const unsigned char
   Parser::yytable_[] =
   {
-      16,    14,     1,     2,     3,     4,     5,     0,    15,     6,
-       0,     0,     0,     0,     7,    26,     0,     0,    17,     0,
-      28,    29,    30,    31,    32,    33,    34,    27,     0,     0,
-       0,     0,    20,    21,    22,    23,    24,    25,     0,    18,
-      20,    21,    22,    23,    24,    25
+      17,    15,     0,    28,     0,     0,     0,    16,    21,    22,
+      23,    24,    25,    26,    27,     0,     0,     0,    18,    29,
+      30,    31,    32,    33,    34,    35,     1,     2,     3,     4,
+       5,     0,     6,     7,     0,     0,     0,     0,     8,    19,
+      21,    22,    23,    24,    25,    26
   };
 
   const signed char
   Parser::yycheck_[] =
   {
-       0,    37,     9,    10,    11,    12,    13,    -1,     7,    16,
-      -1,    -1,    -1,    -1,    21,    14,    -1,    -1,    18,    -1,
-      19,    20,    21,    22,    23,    24,    25,    22,    -1,    -1,
-      -1,    -1,    27,    28,    29,    30,    31,    32,    -1,    39,
+       0,    37,    -1,    22,    -1,    -1,    -1,     8,    27,    28,
+      29,    30,    31,    32,    15,    -1,    -1,    -1,    18,    20,
+      21,    22,    23,    24,    25,    26,     9,    10,    11,    12,
+      13,    -1,    15,    16,    -1,    -1,    -1,    -1,    21,    39,
       27,    28,    29,    30,    31,    32
   };
 
   const unsigned char
   Parser::yystos_[] =
   {
-       0,     9,    10,    11,    12,    13,    16,    21,    57,    59,
-      60,    61,    62,    63,    37,    59,     0,    18,    39,    58,
-      27,    28,    29,    30,    31,    32,    59,    22,    59,    59,
-      59,    59,    59,    59,    59
+       0,     9,    10,    11,    12,    13,    15,    16,    21,    57,
+      59,    60,    61,    62,    63,    37,    59,     0,    18,    39,
+      58,    27,    28,    29,    30,    31,    32,    59,    22,    59,
+      59,    59,    59,    59,    59,    59
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
        0,    56,    57,    57,    57,    57,    58,    58,    59,    59,
-      59,    59,    59,    60,    60,    60,    60,    60,    61,    61,
-      61,    61,    61,    61,    62,    63
+      59,    59,    59,    60,    60,    60,    60,    60,    60,    61,
+      61,    61,    61,    61,    61,    62,    63
   };
 
   const unsigned char
   Parser::yyr2_[] =
   {
        0,     2,     1,     3,     0,     2,     1,     1,     1,     1,
-       1,     1,     3,     1,     1,     1,     1,     1,     3,     3,
-       3,     3,     3,     3,     3,     1
+       1,     1,     3,     1,     1,     1,     1,     1,     1,     3,
+       3,     3,     3,     3,     3,     3,     1
   };
 
 
@@ -1133,8 +1146,8 @@ namespace FrontEnd {
   Parser::yyrline_[] =
   {
        0,   131,   131,   137,   141,   142,   148,   149,   153,   154,
-     155,   156,   157,   161,   162,   163,   164,   165,   169,   176,
-     182,   188,   194,   200,   209,   213
+     155,   156,   157,   161,   162,   163,   164,   165,   166,   170,
+     177,   183,   189,   195,   201,   210,   214
   };
 
   // Print the state stack on the debug stream.
@@ -1221,8 +1234,8 @@ namespace FrontEnd {
 
 #line 4 "parser.yy" // lalr1.cc:1167
 } // FrontEnd
-#line 1225 "parser.tab.cc" // lalr1.cc:1167
-#line 222 "parser.yy" // lalr1.cc:1168
+#line 1238 "parser.tab.cc" // lalr1.cc:1167
+#line 223 "parser.yy" // lalr1.cc:1168
 
 
 

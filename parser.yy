@@ -68,7 +68,7 @@
 %token            FALSE
 %token   <ival>   INTEGER
 %token            FLOAT
-%token            STRING
+%token   <sval>   STRING
 %token   <sval>   IDENTIFIER
 %token            CONSTANT
 
@@ -159,6 +159,7 @@ Expression:
 
 Literal:
     INTEGER                { $$ = new Nodes::LiteralNode(new Runtime::ValueObject($1)); }
+  | STRING                 { $$ = new Nodes::LiteralNode(new Runtime::ValueObject(*$1)); }
   | TRUE                   { $$ = new Nodes::LiteralNode(Lang::Runtime::trueObject); }
   | FALSE                  { $$ = new Nodes::LiteralNode(Lang::Runtime::falseObject); }
   | NIL                    { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }

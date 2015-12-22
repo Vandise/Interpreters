@@ -1,5 +1,6 @@
 #include "valueobject.hpp"
 #include "../runtime.hpp"
+#include <iostream>
 
 /*
 
@@ -21,8 +22,8 @@ Runtime::ValueObject::ValueObject(Runtime::StdClass *klass, boost::variant<int,s
 
 */
 Runtime::ValueObject::ValueObject(std::string value)
-/* TODO: Call Super after runtime is initialized -- : super(i), J(j) etc */
 {
+  this->klass = Lang::Runtime::getRootClass(std::string("String"));
   this->value = value;
 }
 
