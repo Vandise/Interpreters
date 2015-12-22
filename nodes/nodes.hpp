@@ -2,6 +2,7 @@
 #define __NODES_HPP__ 1
 
 #include <vector>
+#include "abstractnode.hpp"
 
 class Context;
 
@@ -13,7 +14,7 @@ namespace Runtime
 namespace Nodes
 {
   class AbstractNode;
-  class Nodes
+  class Nodes : public AbstractNode
   {
     public:
       std::vector<AbstractNode*> nodes;

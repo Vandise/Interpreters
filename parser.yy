@@ -14,9 +14,11 @@
    
    namespace Nodes
    {
+     class Nodes;
      class AbstractNode;
      class LiteralNode;
      class CallNode;
+     class MethodDefinitionNode;
    }
    
    namespace Runtime
@@ -29,6 +31,7 @@
      class Runtime;
    }
    
+   class NodeStack;
 }
 
 %parse-param { Scanner  &scanner  }
@@ -49,6 +52,7 @@
    #include "nodes/callnode.hpp"
    #include "nodes/selfnode.hpp"
    #include "nodes/localassignnode.hpp"
+   #include "nodes/methoddefinitionnode.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -119,11 +123,13 @@
    Nodes::AbstractNode                *abs_node;
    std::vector<Nodes::AbstractNode *> *expressions;
    FrontEnd::Driver                   *driver;
+   Nodes::Nodes                       *nodes;
 }
 
 
-%type <abs_node>     Expression Literal Operator SetLocal GetLocal
+%type <abs_node>     Expression Literal Operator SetLocal GetLocal Function
 %type <driver>       Expressions
+%type <nodes>        BodyExpressions
 
 %%
 
@@ -144,6 +150,23 @@ Expressions:
                                           }
   ;
 
+BodyExpressions: 
+    Expression                            {
+                                            std::vector<Nodes::AbstractNode *> nodes;
+                                            nodes.push_back($1);
+                                            Nodes::Nodes *nodelist = new Nodes::Nodes(nodes);
+                                            $$ = nodelist;
+                                          }
+  | BodyExpressions Terminator Expression {
+                                            $1->add($3);
+                                            $$ = $1;
+                                          }
+  |                                       { /* do nothing */ }
+  | BodyExpressions Terminator            {
+                                            $$ = $1;
+                                          }
+  ;
+
 Terminator: 
   NEWLINE
   | SEMICOLON
@@ -154,6 +177,7 @@ Expression:
   | Operator
   | SetLocal
   | GetLocal
+  | Function
   | OPEN_PAREN Expression CLOSE_PAREN     { $$ = $2; }
   ;
 
@@ -218,6 +242,15 @@ GetLocal:
                           std::map<int, Nodes::AbstractNode*> arguments;
                           $$ = new Nodes::CallNode(*$1, NULL, arguments);
                        }
+  ;
+
+Function:
+  FUNC IDENTIFIER Terminator
+    BodyExpressions
+  END                             {
+                                    std::map<int, std::string> arguments;
+                                    $$ = new Nodes::MethodDefinitionNode(*$2, arguments, $4);
+                                  }
   ;
 
 %%

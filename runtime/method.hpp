@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <stdexcept>
+#include "../runtime/stdclass.hpp"
 #include "valueobject.hpp"
 #include <boost/variant/get.hpp>
 

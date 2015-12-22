@@ -1,0 +1,9 @@
+
+number = 10
+
+// function definitions
+func return_five
+  5
+end
+
+return_five + number

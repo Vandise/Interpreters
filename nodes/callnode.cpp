@@ -16,6 +16,17 @@ Nodes::CallNode::eval(Context *context)
   {
     return context->getLocal(method);
   }
+
+  Runtime::Object* evaledReceiver;
+  if(receiver == NULL)
+  {
+    evaledReceiver = context->getCurrentSelf();
+  }
+  else
+  {
+    evaledReceiver = receiver->eval(context);
+  }
+
   std::map<int, Runtime::Object*> evalArguments;
   std::map<int, AbstractNode*>::iterator it;
   for ( it = this->arguments.begin(); it != this->arguments.end(); it++ )
@@ -24,6 +35,6 @@ Nodes::CallNode::eval(Context *context)
     evalArguments[it->first] = evalArg;
   }
 
-  Runtime::Object *evalReciever = this->receiver->eval(context);
-  return evalReciever->call(this->method, evalArguments);
+  //Runtime::Object *evalReciever = this->receiver->eval(context);
+  return evaledReceiver->call(this->method, evalArguments);
 }
