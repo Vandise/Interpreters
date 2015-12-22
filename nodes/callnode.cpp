@@ -12,6 +12,10 @@ Nodes::CallNode::CallNode(std::string method, AbstractNode *receiver, std::map<i
 Runtime::Object*
 Nodes::CallNode::eval(Context *context)
 {
+  if(receiver == NULL && arguments.empty() && context->hasLocal(method))
+  {
+    return context->getLocal(method);
+  }
   std::map<int, Runtime::Object*> evalArguments;
   std::map<int, AbstractNode*>::iterator it;
   for ( it = this->arguments.begin(); it != this->arguments.end(); it++ )

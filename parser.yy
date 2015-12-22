@@ -48,6 +48,7 @@
    #include "nodes/literalnode.hpp"
    #include "nodes/callnode.hpp"
    #include "nodes/selfnode.hpp"
+   #include "nodes/localassignnode.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -121,7 +122,7 @@
 }
 
 
-%type <abs_node>     Expression Literal Operator GetLocal SetLocal
+%type <abs_node>     Expression Literal Operator SetLocal GetLocal
 %type <driver>       Expressions
 
 %%
@@ -151,8 +152,8 @@ Terminator:
 Expression:
   Literal
   | Operator
-  | GetLocal
   | SetLocal
+  | GetLocal
   | OPEN_PAREN Expression CLOSE_PAREN     { $$ = $2; }
   ;
 
@@ -204,12 +205,18 @@ Operator:
                                       }
   ;
 
-GetLocal:
-  IDENTIFIER                       { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
+SetLocal:
+  IDENTIFIER ASSIGN Expression     { $$ = new Nodes::LocalAssignNode(*$1, $3); }
   ;
 
-SetLocal:
-  IDENTIFIER ASSIGN Expression     { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
+GetLocal:
+  IDENTIFIER           {
+              // Evaluate "my_local" as a local variable 
+              // since we cant have a function (with no arguments and called without parens) 
+                          // and a variable named the same
+                          std::map<int, Nodes::AbstractNode*> arguments;
+                          $$ = new Nodes::CallNode(*$1, NULL, arguments);
+                       }
   ;
 
 %%

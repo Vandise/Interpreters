@@ -1,5 +1,6 @@
 // Assignment
-is_true? = 1
+x = 5
 
-// More complex identifier name
-Bang_Bang!
+y = (x + 1) * 3
+
+y
