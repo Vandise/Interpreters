@@ -5,6 +5,7 @@
 #include  "context.hpp"
 #include "runtime/stdclass.hpp"
 #include "runtime/integer.hpp"
+#include "runtime/string.hpp"
 
 Context*
 Bootstrapper::run()
@@ -33,9 +34,12 @@ Bootstrapper::run()
   intClass->addMethod(std::string("-"),&int_subtract_method);
   intClass->addMethod(std::string("*"),&int_multiply_method);
   intClass->addMethod(std::string("/"),&int_divide_method);
-
   intClass->addMethod(std::string("<"),&int_less_than_method);
   intClass->addMethod(std::string(">"),&int_greater_than_method);
+
+  strClass->addMethod(std::string("*"),&string_multiply_op);
+  strClass->addMethod(std::string("+"),&string_plus_op);
+
   //std::cout << intClass->hasMethod(std::string("+"));
 
   std::map<int, Runtime::Object*> arguments;

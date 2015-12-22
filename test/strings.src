@@ -1,4 +1,4 @@
 // Strings 
-string = "This is a string in this language.\n"
+string = "String" * 3
 
-string
+string + " Hello" + " " + "World"
