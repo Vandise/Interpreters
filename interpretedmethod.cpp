@@ -12,7 +12,7 @@ InterpretedMethod::InterpretedMethod(std::string name, std::vector<std::string> 
 }
 
 Runtime::Object*
-InterpretedMethod::call(Runtime::Object *receiver, std::map<int, Runtime::Object*> arguments)
+InterpretedMethod::call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments)
 {
   Context *context = new Context(receiver);
 

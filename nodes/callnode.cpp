@@ -1,8 +1,9 @@
 #include "callnode.hpp"
 #include "../runtime/stdclass.hpp"
 #include "../context.hpp"
+#include <iostream>
 
-Nodes::CallNode::CallNode(std::string method, AbstractNode *receiver, std::map<int, AbstractNode*> arguments)
+Nodes::CallNode::CallNode(std::string method, AbstractNode *receiver, std::vector<AbstractNode*> arguments)
 {
   this->method = method;
   this->receiver = receiver;
@@ -27,12 +28,12 @@ Nodes::CallNode::eval(Context *context)
     evaledReceiver = receiver->eval(context);
   }
 
-  std::map<int, Runtime::Object*> evalArguments;
-  std::map<int, AbstractNode*>::iterator it;
-  for ( it = this->arguments.begin(); it != this->arguments.end(); it++ )
+  std::vector<Runtime::Object*> evalArguments;
+
+  for(int i = 0; i < this->arguments.size(); i++)
   {
-    Runtime::Object *evalArg = it->second->eval(context);
-    evalArguments[it->first] = evalArg;
+    Runtime::Object *evalArg = (this->arguments[i])->eval(context);
+    evalArguments.push_back(evalArg);
   }
 
   //Runtime::Object *evalReciever = this->receiver->eval(context);

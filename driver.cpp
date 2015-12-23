@@ -1,6 +1,7 @@
 #include <cctype>
 #include <fstream>
 #include <cassert>
+#include <iostream>
 
 #include "nodestack.hpp"
 #include "driver.hpp"

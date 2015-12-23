@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 #include <boost/variant.hpp>
 
 namespace Runtime
@@ -25,7 +26,7 @@ namespace Runtime
       Object*  getInstanceVariable(std::string name);
       int      hasInstanceVariable(std::string name);
       void     setInstanceVariable(std::string name, Object *value);
-      Object*  call(std::string method, std::map<int, Object*> arguments);
+      Object*  call(std::string method, std::vector<Object*> arguments);
       Object*  call(std::string method);
       int      isTrue();
       int      isFalse();

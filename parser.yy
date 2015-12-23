@@ -6,8 +6,7 @@
 %define parse.trace
 
 %code requires{
-  #include <map>
-  
+#include <vector>
   namespace FrontEnd {
     class Driver;
     class Scanner;
@@ -43,6 +42,7 @@
    #include <cstdlib>
    #include <fstream>
    #include <map>
+   #include <vector>
 
    /* include for all driver functions */
    #include "driver.hpp"
@@ -196,39 +196,39 @@ Literal:
 
 Operator:
     Expression PLUS Expression        {
-                                        std::map<int, Nodes::AbstractNode*> arguments;
-                                        arguments[0] = $3;
+                                        std::vector<Nodes::AbstractNode*> arguments;
+                                        arguments.push_back($3);
                                         std::string method = *$2;
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
 
   | Expression MINUS Expression       {
-                                        std::map<int, Nodes::AbstractNode*> arguments;
-                                        arguments[0] = $3;
+                                        std::vector<Nodes::AbstractNode*> arguments;
+                                        arguments.push_back($3);
                                         std::string method = *$2;
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
   | Expression MUL Expression         {
-                                        std::map<int, Nodes::AbstractNode*> arguments;
-                                        arguments[0] = $3;
+                                        std::vector<Nodes::AbstractNode*> arguments;
+                                        arguments.push_back($3);
                                         std::string method = *$2;
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
   | Expression DIV Expression         {
-                                        std::map<int, Nodes::AbstractNode*> arguments;
-                                        arguments[0] = $3;
+                                        std::vector<Nodes::AbstractNode*> arguments;
+                                        arguments.push_back($3);
                                         std::string method = *$2;
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
   | Expression LT Expression          {
-                                        std::map<int, Nodes::AbstractNode*> arguments;
-                                        arguments[0] = $3;
+                                        std::vector<Nodes::AbstractNode*> arguments;
+                                        arguments.push_back($3);
                                         std::string method = *$2;
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
   | Expression GT Expression          {
-                                        std::map<int, Nodes::AbstractNode*> arguments;
-                                        arguments[0] = $3;
+                                        std::vector<Nodes::AbstractNode*> arguments;
+                                        arguments.push_back($3);
                                         std::string method = *$2;
                                         $$ = new Nodes::CallNode(method, $1, arguments); 
                                       }
@@ -243,7 +243,7 @@ GetLocal:
               // Evaluate "my_local" as a local variable 
               // since we cant have a function (with no arguments and called without parens) 
                           // and a variable named the same
-                          std::map<int, Nodes::AbstractNode*> arguments;
+                          std::vector<Nodes::AbstractNode*> arguments;
                           $$ = new Nodes::CallNode(*$1, NULL, arguments);
                        }
   ;

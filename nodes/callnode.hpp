@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 
 #include "abstractnode.hpp"
 
@@ -21,10 +22,10 @@ namespace Nodes
     private:
       AbstractNode *receiver;
       std::string  method;
-      std::map<int, AbstractNode*> arguments;
+      std::vector<AbstractNode*> arguments;
 
     public:
-      CallNode(std::string method, AbstractNode *receiver, std::map<int, AbstractNode*> arguments);
+      CallNode(std::string method, AbstractNode *receiver, std::vector<AbstractNode*> arguments);
       Runtime::Object* eval(Context *context);
   };
 }

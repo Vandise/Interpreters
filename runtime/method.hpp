@@ -2,6 +2,7 @@
 #define __METHOD_HPP__ 1
 
 #include <map>
+#include <vector>
 #include <string>
 #include <stdexcept>
 #include "../runtime/stdclass.hpp"
@@ -16,13 +17,13 @@ namespace Runtime
 
 struct Method
 {
-  virtual Runtime::Object* call(Runtime::Object *receiver, std::map<int, Runtime::Object*> arguments) = 0;
+  virtual Runtime::Object* call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments) = 0;
 };
 
 template<typename T>
 struct OperatorMethod : Method
 {
-  Runtime::Object* call(Runtime::Object *receiver, std::map<int, Runtime::Object*> arguments)
+  Runtime::Object* call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments)
   {
     Runtime::ValueObject* argument_object = (Runtime::ValueObject*)arguments[0];
     std::string class_name = argument_object->getStdClass()->getName();
@@ -43,7 +44,7 @@ struct OperatorMethod : Method
 template<typename S, typename I>
 struct StringOperatorMethod : Method
 {
-  Runtime::Object* call(Runtime::Object *receiver, std::map<int, Runtime::Object*> arguments)
+  Runtime::Object* call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments)
   {
     S self     = boost::get<S>(((Runtime::ValueObject*)receiver)->getValue());
     I argument = boost::get<I>(((Runtime::ValueObject*)arguments[0])->getValue());

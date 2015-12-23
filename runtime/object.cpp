@@ -64,7 +64,7 @@ Runtime::Object::setInstanceVariable(std::string name, Runtime::Object *value)
 }
 
 Runtime::Object*
-Runtime::Object::call(std::string method, std::map<int, Runtime::Object*> arguments)
+Runtime::Object::call(std::string method, std::vector<Runtime::Object*> arguments)
 {
   return klass->lookup(method)->call(this, arguments);
 }

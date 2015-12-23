@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 #include  "context.hpp"
 #include "runtime/stdclass.hpp"
 #include "runtime/integer.hpp"
@@ -40,36 +41,5 @@ Bootstrapper::run()
   strClass->addMethod(std::string("*"),&string_multiply_op);
   strClass->addMethod(std::string("+"),&string_plus_op);
 
-  //std::cout << intClass->hasMethod(std::string("+"));
-
-  std::map<int, Runtime::Object*> arguments;
-  Runtime::ValueObject *valobj = new Runtime::ValueObject(1);
-  arguments[0] = new Runtime::ValueObject(1);
-  Runtime::Object *returnValue = int_add_method.call(valobj, arguments);
-
-  //std::cout << valobj->call(std::string("+"),arguments)->getValue();
-
-  /*
-    Object
-      klass = Lang::Runtime::getRootClass("Integer")
-        => ObjectClass->getConstant("Integer") -> constants["Integer"]
-        => StdClass "Integer"
-            -> Methods["+", method_struct ptr]
-        
-    1 + 1
-    Runtime::ValueObject(1).call("+",Runtime::ValueObject(1))
-      => 2
-  
-  */
-
-/*
-  std::cout << "\n Val Object Inherits Integer: \n";
-  std::cout << valobj->getStdClass()->getName();
-  std::cout << "\n";
-
-  std::cout << "Value of returned object: ";
-  std::cout << returnValue->getValue();
-  std::cout << "\n";
-*/
   return new Context(main);
 }

@@ -20,7 +20,7 @@ class InterpretedMethod : public Method
 
   public:
     InterpretedMethod(std::string name, std::vector<std::string> parameters, Nodes::AbstractNode *body);
-    Runtime::Object* call(Runtime::Object *receiver, std::map<int, Runtime::Object*> arguments);
+    Runtime::Object* call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments);
     
 };
 
