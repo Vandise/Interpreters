@@ -127,13 +127,15 @@
    FrontEnd::Driver                   *driver;
    Nodes::Nodes                       *nodes;
    std::vector<std::string>           *parameters;
+   std::vector<Nodes::AbstractNode*>  *arguments;
 }
 
 
-%type <abs_node>     Expression Literal Operator SetLocal GetLocal Function
+%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function
 %type <driver>       Expressions
 %type <nodes>        BodyExpressions
 %type <parameters>   Parameters
+%type <arguments>    Arguments
 
 %%
 
@@ -178,6 +180,7 @@ Terminator:
 
 Expression:
   Literal
+  | Call
   | Operator
   | SetLocal
   | GetLocal
@@ -192,6 +195,26 @@ Literal:
   | FALSE                  { $$ = new Nodes::LiteralNode(Lang::Runtime::falseObject); }
   | NIL                    { $$ = new Nodes::LiteralNode(Lang::Runtime::nilObject); }
   | SELF                   { $$ = new Nodes::SelfNode(); }
+  ;
+
+Call:
+    IDENTIFIER OPEN_PAREN Arguments CLOSE_PAREN { $$ = new Nodes::CallNode(*$1, NULL, *$3); }
+  ;
+
+Arguments:
+    Expression                  {
+                                  std::vector<Nodes::AbstractNode*> *arguments = new std::vector<Nodes::AbstractNode*>();
+                                  arguments->push_back($1);
+                                  $$ = arguments;
+                                }
+  | Arguments COMMA Expression  {
+                                  $1->push_back($3);
+                                  $$ = $1;
+                                }
+  |                             {
+                                  std::vector<Nodes::AbstractNode*> *arguments = new std::vector<Nodes::AbstractNode*>();
+                                  $$ = arguments;
+                                }
   ;
 
 Operator:

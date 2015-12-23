@@ -1,3 +1,5 @@
 func add(one, two)
   one + two
 end
+
+add(2,2)
