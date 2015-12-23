@@ -3,6 +3,7 @@
 #include "nodes/abstractnode.hpp"
 #include "context.hpp"
 #include <stdexcept>
+#include <iostream>
 
 InterpretedMethod::InterpretedMethod(std::string name, std::vector<std::string> parameters, Nodes::AbstractNode *body)
 {

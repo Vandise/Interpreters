@@ -3,6 +3,7 @@
 #include "../interpretedmethod.hpp"
 #include "../context.hpp"
 #include "../runtime/stdclass.hpp"
+#include <iostream>
 
 Nodes::MethodDefinitionNode::MethodDefinitionNode(std::string name, std::vector<std::string> parameters, Nodes::AbstractNode *body)
 {

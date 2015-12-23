@@ -23,15 +23,15 @@ Nodes::Nodes::eval(Context *context)
   std::cout << this->nodes.size();
   std::cout << "\n";
 
-  Runtime::Object *lastEval = Lang::Runtime::getNil();
+  Runtime::Object *lastEval = Lang::Runtime::nilObject;
 
   for (auto &n : this->nodes) {
     lastEval = n->eval(context);
   }
 
-  std::cout << "Returned Class: ";
-  std::cout << lastEval->getStdClass()->getName();
-  std::cout << "\n";
+  //std::cout << "Returned Class: ";
+  //std::cout << lastEval->getStdClass()->getName();
+  //std::cout << "\n";
   std::cout << "value: ";
   std::cout << lastEval->getValue();
   std::cout << "\n";

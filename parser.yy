@@ -54,6 +54,7 @@
    #include "nodes/selfnode.hpp"
    #include "nodes/localassignnode.hpp"
    #include "nodes/methoddefinitionnode.hpp"
+   #include "nodes/classdefinitionnode.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -131,7 +132,7 @@
 }
 
 
-%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function
+%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Class
 %type <driver>       Expressions
 %type <nodes>        BodyExpressions
 %type <parameters>   Parameters
@@ -185,6 +186,7 @@ Expression:
   | SetLocal
   | GetLocal
   | Function
+  | Class
   | OPEN_PAREN Expression CLOSE_PAREN     { $$ = $2; }
   ;
 
@@ -301,6 +303,14 @@ Parameters:
   |                               { 
                                     std::vector<std::string> *parameters = new std::vector<std::string>();
                                     $$ = parameters;
+                                  }
+  ;
+
+Class:
+    CLASS CONSTANT Terminator
+      BodyExpressions
+    END                           {
+                                    $$ = new Nodes::ClassDefinitionNode(*$2, std::string(""), $4);
                                   }
   ;
 
