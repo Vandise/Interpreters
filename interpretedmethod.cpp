@@ -4,7 +4,7 @@
 #include "context.hpp"
 #include <stdexcept>
 
-InterpretedMethod::InterpretedMethod(std::string name, std::map<int, std::string> parameters, Nodes::AbstractNode *body)
+InterpretedMethod::InterpretedMethod(std::string name, std::vector<std::string> parameters, Nodes::AbstractNode *body)
 {
   this->name = name;
   this->parameters = parameters;

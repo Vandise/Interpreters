@@ -4,7 +4,7 @@
 #include "../context.hpp"
 #include "../runtime/stdclass.hpp"
 
-Nodes::MethodDefinitionNode::MethodDefinitionNode(std::string name, std::map<int, std::string> parameters, Nodes::AbstractNode *body)
+Nodes::MethodDefinitionNode::MethodDefinitionNode(std::string name, std::vector<std::string> parameters, Nodes::AbstractNode *body)
 {
   this->name = name;
   this->parameters = parameters;

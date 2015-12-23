@@ -6,32 +6,33 @@
 %define parse.trace
 
 %code requires{
-
-   namespace FrontEnd {
-      class Driver;
-      class Scanner;
-   }
-   
-   namespace Nodes
-   {
-     class Nodes;
-     class AbstractNode;
-     class LiteralNode;
-     class CallNode;
-     class MethodDefinitionNode;
-   }
-   
-   namespace Runtime
-   {
-     class ValueObject;
-   }
-   
-   namespace Lang
-   {
-     class Runtime;
-   }
-   
-   class NodeStack;
+  #include <map>
+  
+  namespace FrontEnd {
+    class Driver;
+    class Scanner;
+  }
+  
+  namespace Nodes
+  {
+   class Nodes;
+   class AbstractNode;
+   class LiteralNode;
+   class CallNode;
+   class MethodDefinitionNode;
+  }
+  
+  namespace Runtime
+  {
+   class ValueObject;
+  }
+  
+  namespace Lang
+  {
+   class Runtime;
+  }
+  
+  class NodeStack;
 }
 
 %parse-param { Scanner  &scanner  }
@@ -97,6 +98,7 @@
 %token   <sval>   NOT
 %token   <sval>   ASSIGN
 %token   <sval>   COMMENT
+%token   <sval>   COMMA
 %token   <sval>   NEWLINE 
 %token            PRGEND 0     "end of file"
 
@@ -124,12 +126,14 @@
    std::vector<Nodes::AbstractNode *> *expressions;
    FrontEnd::Driver                   *driver;
    Nodes::Nodes                       *nodes;
+   std::vector<std::string>           *parameters;
 }
 
 
 %type <abs_node>     Expression Literal Operator SetLocal GetLocal Function
 %type <driver>       Expressions
 %type <nodes>        BodyExpressions
+%type <parameters>   Parameters
 
 %%
 
@@ -245,12 +249,28 @@ GetLocal:
   ;
 
 Function:
-  FUNC IDENTIFIER Terminator
+  FUNC IDENTIFIER OPEN_PAREN Parameters CLOSE_PAREN Terminator
     BodyExpressions
   END                             {
-                                    std::map<int, std::string> arguments;
+                                    $$ = new Nodes::MethodDefinitionNode(*$2, *$4, $7);
+                                  }
+
+  | FUNC IDENTIFIER Terminator
+      BodyExpressions
+    END                           {
+                                    std::vector<std::string> arguments = std::vector<std::string>();
                                     $$ = new Nodes::MethodDefinitionNode(*$2, arguments, $4);
                                   }
+  ;
+
+Parameters:
+    IDENTIFIER                    {
+                                    std::vector<std::string> *parameters = new std::vector<std::string>();
+                                    parameters->push_back(*$1);
+                                    $$ = parameters;
+                                  }
+  |  Parameters COMMA IDENTIFIER  { $1->push_back(*$3); $$ = $1; }
+  |                               { std::cout << "No Identifiers\n"; }
   ;
 
 %%
