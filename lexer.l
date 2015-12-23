@@ -59,6 +59,11 @@ comment               \#.*$
 "nil"       { return(token::NIL);   }
 "self"      { return(token::SELF);  }
 
+([A-Z][a-zA-Z]*)+ {
+                    yylval->sval = STOKEN(yytext);
+                    return( token::CONSTANT );     
+                  }
+
 [_a-zA-Z\\?\\!]+  {
                     yylval->sval = STOKEN(yytext);
                     return( token::IDENTIFIER );

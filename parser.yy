@@ -75,7 +75,7 @@
 %token            FLOAT
 %token   <sval>   STRING
 %token   <sval>   IDENTIFIER
-%token            CONSTANT
+%token   <sval>   CONSTANT
 
 %token   <sval>   SEMICOLON
 %token   <sval>   COLON
