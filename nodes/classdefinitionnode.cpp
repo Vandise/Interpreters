@@ -14,7 +14,6 @@ Nodes::ClassDefinitionNode::ClassDefinitionNode(std::string name, std::string su
 Runtime::Object*
 Nodes::ClassDefinitionNode::eval(Context *context)
 {
-  std::cout << "Evaluating Class Definition Node\n";
   Runtime::StdClass *klass;
   Nodes::Nodes *nodes = (Nodes::Nodes*)this->body;
 

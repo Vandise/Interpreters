@@ -55,6 +55,7 @@
    #include "nodes/localassignnode.hpp"
    #include "nodes/methoddefinitionnode.hpp"
    #include "nodes/classdefinitionnode.hpp"
+   #include "nodes/constantnode.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -132,7 +133,7 @@
 }
 
 
-%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Class
+%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Class GetConstant
 %type <driver>       Expressions
 %type <nodes>        BodyExpressions
 %type <parameters>   Parameters
@@ -183,6 +184,7 @@ Expression:
   Literal
   | Call
   | Operator
+  | GetConstant
   | SetLocal
   | GetLocal
   | Function
@@ -314,6 +316,9 @@ Class:
                                   }
   ;
 
+GetConstant:
+    CONSTANT                      { $$ = new Nodes::ConstantNode(*$1); }
+  ;
 %%
 
 
