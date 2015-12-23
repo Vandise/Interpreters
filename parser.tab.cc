@@ -960,12 +960,15 @@ namespace FrontEnd {
 
   case 36:
 #line 273 "parser.yy" // lalr1.cc:859
-    { std::cout << "No Identifiers\n"; }
-#line 965 "parser.tab.cc" // lalr1.cc:859
+    { 
+                                    std::vector<std::string> *parameters = new std::vector<std::string>();
+                                    (yylhs.value.parameters) = parameters;
+                                  }
+#line 968 "parser.tab.cc" // lalr1.cc:859
     break;
 
 
-#line 969 "parser.tab.cc" // lalr1.cc:859
+#line 972 "parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -1334,8 +1337,8 @@ namespace FrontEnd {
 
 #line 4 "parser.yy" // lalr1.cc:1167
 } // FrontEnd
-#line 1338 "parser.tab.cc" // lalr1.cc:1167
-#line 276 "parser.yy" // lalr1.cc:1168
+#line 1341 "parser.tab.cc" // lalr1.cc:1167
+#line 279 "parser.yy" // lalr1.cc:1168
 
 
 

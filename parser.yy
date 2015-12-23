@@ -270,7 +270,10 @@ Parameters:
                                     $$ = parameters;
                                   }
   |  Parameters COMMA IDENTIFIER  { $1->push_back(*$3); $$ = $1; }
-  |                               { std::cout << "No Identifiers\n"; }
+  |                               { 
+                                    std::vector<std::string> *parameters = new std::vector<std::string>();
+                                    $$ = parameters;
+                                  }
   ;
 
 %%
