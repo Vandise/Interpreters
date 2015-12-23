@@ -2,7 +2,8 @@ x = "Hello"
 y = "World"
 
 func add(one, two)
-  one + two
+  result = one + two
+  result
 end
 
-add(x,y)
+self.add(x,y)

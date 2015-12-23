@@ -107,6 +107,8 @@ comment               \#.*$
             
 ","         { yylval->sval = STOKEN(yytext); return( token::COMMA ); }
 
+"."         { return( token::DOT ); }
+
 .           {  /* printf("unknown character in input: %c\n", *yytext); */ }
 
 %%

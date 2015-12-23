@@ -79,7 +79,7 @@
 
 %token   <sval>   SEMICOLON
 %token   <sval>   COLON
-%token   <sval>   DOT
+%token            DOT
 %token            OPEN_PAREN
 %token            CLOSE_PAREN
 %token   <sval>   AT
@@ -198,7 +198,12 @@ Literal:
   ;
 
 Call:
-    IDENTIFIER OPEN_PAREN Arguments CLOSE_PAREN { $$ = new Nodes::CallNode(*$1, NULL, *$3); }
+    IDENTIFIER OPEN_PAREN Arguments CLOSE_PAREN                 { $$ = new Nodes::CallNode(*$1, NULL, *$3); }
+  | Expression DOT IDENTIFIER OPEN_PAREN Arguments CLOSE_PAREN  { $$ = new Nodes::CallNode(*$3, $1, *$5);   }
+  | Expression DOT IDENTIFIER                                   {
+                                                                  std::vector<Nodes::AbstractNode*> *arguments = new std::vector<Nodes::AbstractNode*>();
+                                                                  $$ = new Nodes::CallNode(*$3, $1, *arguments);
+                                                                }
   ;
 
 Arguments:
