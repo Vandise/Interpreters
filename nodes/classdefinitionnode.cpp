@@ -27,6 +27,11 @@ Nodes::ClassDefinitionNode::eval(Context *context)
     // quick workaround for the time being
     //
     klass->setStdClass(klass);
+
+    //
+    // We should be able to set the superclass "Class" here
+    // without issue once the bug is resolved.
+    //
   }
   else
   {

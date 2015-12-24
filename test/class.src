@@ -4,10 +4,6 @@ class Person
     "Hello " + name
   end
 
-  func greeting(name)
-    "Hello "+name
-  end
-
 end
 
 x = Person
