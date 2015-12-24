@@ -72,22 +72,26 @@ Not yet implemented
 ### Control Structures
 None Currently Available
 
-### Core Classes / Methods
+### Core Classes / Methods Inheritance Order
 Note: Implemented for concepts only.
-- Integer
-  - +
-  - -
-  - *
-  - /
-  - >
-  - <
-- String
-  - +
-  - *
-- True
-- False
-- Nil
-- Self
+- Class
+- > Object
+    - print 
+- > Main 
+  - Integer
+    - +
+    - -
+    - *
+    - /
+    - >
+    - <
+  - String
+    - +
+    - *
+  - True
+  - False
+  - Nil
+  - Self
 
 ### Runtime
 User-defined code is useless unless it has a runtime to execute in. The Core classes are readily available in the runtime for the user to use. It is also where we define all core methods to these classes.
