@@ -43,21 +43,27 @@ All class names must begin with a capital letter in order to be put into the run
 class Person
 
   func greet(name)
-    "Hello " + name
+    print("Hello " + name)
   end
 
 end
+
+Person.greet("Ben")
 ```
 
 #### Constructors
 Not yet implemented
 
 ### Accessing class methods
-In order to access class member functions, you must establish a reference to a the class. There are currently no static methods. Using the above-defined class, we can access its methods.
+Currently all user-defined class methods have a public, static scope and can be called by directly invoking the class, or through an instance variable which will allow you to store state.
 ```
-friend = Person
-friend.greet("Ben")
-=> "Hello Ben"
+Person.greet("Ben")
+=> Hello Ben
+
+x = Person
+
+x.greet("Frank")
+=> Hello Frank
 ```
 
 #### Instance Variables
