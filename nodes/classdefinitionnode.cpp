@@ -21,6 +21,12 @@ Nodes::ClassDefinitionNode::eval(Context *context)
   if(this->superName.empty())
   {
     klass = new Runtime::StdClass(this->name);
+    //
+    // TODO: There's a bug with Lang::Runtime::getRootClass(....)
+    // the constructor should make a call to the "Class" class, but throws a segment error
+    // quick workaround for the time being
+    //
+    klass->setStdClass(klass);
   }
   else
   {

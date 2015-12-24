@@ -2,17 +2,20 @@
 #include "valueobject.hpp"
 #include "../runtime.hpp"
 #include "method.hpp"
+#include <stdexcept>
 
 Runtime::StdClass::StdClass(std::string name)
 {
   this->name = name;
   this->superClass = Lang::Runtime::getObjectClass();
+  this->klass = Lang::Runtime::getObjectClass();
 }
 
 Runtime::StdClass::StdClass(std::string name, Runtime::StdClass *superClass)
 {
   this->name = name;
   this->superClass = superClass;
+  this->klass = Lang::Runtime::getObjectClass();
 }
 
 std::string
@@ -60,7 +63,7 @@ Runtime::StdClass::lookup(std::string name)
     return methods[name];
   if(superClass)
     return superClass->lookup(name);
-  /* TODO: build exceptions - undefined method here */
+  throw std::invalid_argument("Call to undefined method.\n");
 }
 
 int
