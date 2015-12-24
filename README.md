@@ -38,7 +38,30 @@ object->call("+",[1,2])
 ```
 
 ### User Defined Classes
-Not Currently Available
+All class names must begin with a capital letter in order to be put into the runtime. A simple person class can be constructed like the following:
+```
+class Person
+
+  func greet(name)
+    "Hello " + name
+  end
+
+end
+```
+
+#### Constructors
+Not yet implemented
+
+### Accessing class methods
+In order to access class member functions, you must establish a reference to a the class. There are currently no static methods. Using the above-defined class, we can access its methods.
+```
+friend = Person
+friend.greet("Ben")
+=> "Hello Ben"
+```
+
+#### Instance Variables
+Not yet implemented
 
 ### Control Structures
 None Currently Available
