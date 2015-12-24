@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <vector>
 #include  "context.hpp"
+#include "runtime/class.hpp"
 #include "runtime/stdclass.hpp"
 #include "runtime/integer.hpp"
 #include "runtime/string.hpp"
@@ -32,6 +33,7 @@ Bootstrapper::run()
   Runtime::StdClass *intClass = objectClass->newSubclass(std::string("Integer"));
   Runtime::StdClass *strClass = objectClass->newSubclass(std::string("String"));
 
+  classClass->addMethod(std::string("new"),&class_new_method);
   objectClass->addMethod(std::string("print"),&global_print_method);
 
   intClass->addMethod(std::string("+"),&int_add_method);

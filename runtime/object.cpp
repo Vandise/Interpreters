@@ -114,5 +114,8 @@ Runtime::Object::getValue()
 std::string
 Runtime::Object::getName()
 {
+  if(this->klass)
+    return this->klass->getName();
+
   return std::string("Object");
 }

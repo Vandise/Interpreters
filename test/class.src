@@ -9,10 +9,15 @@ end
 
 class User : Person
 
+  func construct()
+    self
+  end
+
   func login(name)
     greet(name)
   end
 
 end
 
-User.login("Bob")
+current_user = User.new
+User.login("Ben")
