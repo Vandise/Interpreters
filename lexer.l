@@ -114,6 +114,8 @@ comment               \#.*$
 
 "."         { return( token::DOT ); }
 
+":"         { return( token::COLON ); }
+
 .           {  /* printf("unknown character in input: %c\n", *yytext); */ }
 
 %%

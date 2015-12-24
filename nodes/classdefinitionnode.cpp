@@ -4,6 +4,10 @@
 #include "nodes.hpp"
 #include <iostream>
 
+//
+// TODO: There's sometimes a bug when having two class definitions in a row
+// Doesn't occure often, debug later.
+//
 Nodes::ClassDefinitionNode::ClassDefinitionNode(std::string name, std::string superName, AbstractNode *body)
 {
   this->name      = name;
@@ -30,16 +34,13 @@ Nodes::ClassDefinitionNode::eval(Context *context)
     // quick workaround for the time being
     //
     klass->setStdClass(klass);
-
-    //
-    // We should be able to set the superclass "Class" here
-    // without issue once the bug is resolved.
-    //
   }
   else
   {
     Runtime::StdClass *superClass = (Runtime::StdClass*)context->getCurrentClass()->getConstant(this->superName);
+    superClass->setStdClass(superClass);
     klass = new Runtime::StdClass(this->name, superClass);
+    klass->setStdClass(klass);
   }
 
   Context *eval_context = new Context(klass, klass);

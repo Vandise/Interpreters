@@ -80,7 +80,7 @@
 %token   <sval>   CONSTANT
 
 %token   <sval>   SEMICOLON
-%token   <sval>   COLON
+%token            COLON
 %token            DOT
 %token            OPEN_PAREN
 %token            CLOSE_PAREN
@@ -309,7 +309,13 @@ Parameters:
   ;
 
 Class:
-    CLASS CONSTANT Terminator
+  CLASS CONSTANT COLON CONSTANT Terminator
+    BodyExpressions
+  END                             {
+                                    $$ = new Nodes::ClassDefinitionNode(*$2, *$4, $6);
+                                  }
+
+  | CLASS CONSTANT Terminator
       BodyExpressions
     END                           {
                                     $$ = new Nodes::ClassDefinitionNode(*$2, std::string(""), $4);

@@ -3,6 +3,7 @@
 #include "../runtime.hpp"
 #include "method.hpp"
 #include <stdexcept>
+#include <iostream>
 
 Runtime::StdClass::StdClass(std::string name)
 {
@@ -60,9 +61,13 @@ Method*
 Runtime::StdClass::lookup(std::string name)
 {
   if(methods.count(name) >= 1)
+  {
     return methods[name];
+  }
   if(superClass)
+  {
     return superClass->lookup(name);
+  }
   throw std::invalid_argument("Call to undefined method.\n");
 }
 

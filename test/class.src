@@ -1,19 +1,18 @@
 class Person
 
-  //this is all perfectly legal
-  x = 1
-  x = x + 1
-  print(x)
-
   // classes generally have memeber functions
   func greet(name)
     print("Hello " + name)
   end
 
-  // We can even call methods inside the class body 
-  // during its construction
-  self.greet("Bob")
+end
+
+class User : Person
+
+  func login(name)
+    greet(name)
+  end
 
 end
 
-Person.greet("Ben")
+User.login("Bob")
