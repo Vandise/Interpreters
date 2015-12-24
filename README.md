@@ -69,6 +69,28 @@ x.greet("Frank")
 #### Instance Variables
 Not yet implemented
 
+#### Inheritance
+Inheritance is specified in the class definition, separated by a colon ":"
+```
+// Person : Object is implied
+class Person
+
+  func greet(name)
+    print("Hello " + name)
+  end
+
+end
+
+class User : Person
+  func login(name)
+    greet(name)
+  end
+end
+
+User.login("Billy")
+=> "Hello Billy"
+```
+
 ### Control Structures
 None Currently Available
 
