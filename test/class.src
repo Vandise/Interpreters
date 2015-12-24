@@ -1,7 +1,7 @@
 class Person
 
   func greet(name)
-    "Hello " + name
+    print("Hello " + name)
   end
 
 end

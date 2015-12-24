@@ -7,6 +7,7 @@
 #include "runtime/stdclass.hpp"
 #include "runtime/integer.hpp"
 #include "runtime/string.hpp"
+#include "runtime/object_methods.hpp"
 
 Context*
 Bootstrapper::run()
@@ -30,6 +31,8 @@ Bootstrapper::run()
   Lang::Runtime::falseObject  = objectClass->newSubclass(std::string("FalseClass"))->newInstance(0);
   Runtime::StdClass *intClass = objectClass->newSubclass(std::string("Integer"));
   Runtime::StdClass *strClass = objectClass->newSubclass(std::string("String"));
+
+  objectClass->addMethod(std::string("print"),&global_print_method);
 
   intClass->addMethod(std::string("+"),&int_add_method);
   intClass->addMethod(std::string("-"),&int_subtract_method);

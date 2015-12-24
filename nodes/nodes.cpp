@@ -19,9 +19,9 @@ Nodes::Nodes::add(AbstractNode* node)
 Runtime::Object*
 Nodes::Nodes::eval(Context *context)
 {
-  std::cout << "Total Nodes to eval: ";
-  std::cout << this->nodes.size();
-  std::cout << "\n";
+  //std::cout << "Total Nodes to eval: ";
+  //std::cout << this->nodes.size();
+  //std::cout << "\n";
 
   Runtime::Object *lastEval = Lang::Runtime::nilObject;
 
@@ -32,9 +32,9 @@ Nodes::Nodes::eval(Context *context)
   //std::cout << "Returned Class: ";
   //std::cout << lastEval->getStdClass()->getName();
   //std::cout << "\n";
-  std::cout << "value: ";
-  std::cout << lastEval->getValue();
-  std::cout << "\n";
+  //std::cout << "value: ";
+  //std::cout << lastEval->getValue();
+  //std::cout << "\n";
 
   return lastEval;
 }
