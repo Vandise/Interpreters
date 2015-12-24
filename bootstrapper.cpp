@@ -12,14 +12,14 @@
 Context*
 Bootstrapper::run()
 {
-  Runtime::StdClass *objectClass = new Runtime::StdClass("Object");
+  Runtime::StdClass *classClass = new Runtime::StdClass("Class");
+  Runtime::StdClass *objectClass = new Runtime::StdClass("Object", classClass);
   Lang::Runtime::objectClass = objectClass;
 
   Runtime::Object *main = new Runtime::Object();
   Lang::Runtime::mainObject = main;
 
-  Runtime::StdClass *classClass = new Runtime::StdClass("Class");
-  objectClass->setStdClass(classClass); // object is a class
+  objectClass->setStdClass(objectClass); // object is a class
   classClass->setStdClass(classClass); // class is a class
   main->setStdClass(objectClass);
 
