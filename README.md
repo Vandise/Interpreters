@@ -52,7 +52,23 @@ Person.greet("Ben")
 ```
 
 #### Constructors
-Not yet implemented
+To construct a new instance of an object, simply call the *new* method on the object you wish to instantiate.
+```
+me = Person.new
+=> <Person 0x....>
+```
+The new method makes a call to a user-defined method *construct* like the following:
+```
+class Person
+  func construct()
+    print("Person Constructed")
+  end
+end
+
+me = Person.new
+=> Person Constructed
+=> <Person 0x....>
+```
 
 ### Accessing class methods
 Currently all user-defined class methods have a public, static scope and can be called by directly invoking the class, or through an instance variable which will allow you to store state.
