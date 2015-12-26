@@ -22,6 +22,26 @@ struct ClassNew : Method
   }
 };
 
-ClassNew class_new_method;
+struct ClassSuperClass : Method
+{
+  Runtime::Object* call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments)
+  {
+    Runtime::StdClass *self = (Runtime::StdClass*)receiver;
+    return self->getSuperClass();
+  }
+};
+
+struct ClassName : Method
+{
+  Runtime::Object* call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments)
+  {
+    Runtime::StdClass *self = (Runtime::StdClass*)receiver;
+    return new Runtime::ValueObject(self->getName());
+  }
+};
+
+ClassNew        class_new_method;
+ClassSuperClass class_super_class_method;
+ClassName       class_class_name_method;
 
 #endif

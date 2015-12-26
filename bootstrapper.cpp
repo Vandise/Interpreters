@@ -34,7 +34,11 @@ Bootstrapper::run()
   Runtime::StdClass *strClass = objectClass->newSubclass(std::string("String"));
 
   classClass->addMethod(std::string("new"),&class_new_method);
+  classClass->addMethod(std::string("class_name"),&class_class_name_method);
+  classClass->addMethod(std::string("superclass"),&class_super_class_method);
+
   objectClass->addMethod(std::string("print"),&global_print_method);
+  objectClass->addMethod(std::string("class_instance"),&global_class_instance);
 
   intClass->addMethod(std::string("+"),&int_add_method);
   intClass->addMethod(std::string("-"),&int_subtract_method);

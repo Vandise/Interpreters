@@ -20,6 +20,15 @@ struct GlobalPrint : Method
   }
 };
 
-GlobalPrint global_print_method;
+struct GlobalClassInstance : Method
+{
+  Runtime::Object* call(Runtime::Object *receiver, std::vector<Runtime::Object*> arguments)
+  {
+    return receiver->getStdClass();
+  }
+};
+
+GlobalPrint         global_print_method;
+GlobalClassInstance global_class_instance;
 
 #endif

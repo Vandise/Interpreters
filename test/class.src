@@ -1,3 +1,4 @@
+
 class Person
 
   // classes generally have memeber functions
@@ -20,4 +21,9 @@ class User : Person
 end
 
 current_user = User.new
-User.login("Ben")
+current_user.login("Ben")
+
+// <User 0x...>
+print(current_user.class_instance)
+// User
+print(current_user.class_name)
