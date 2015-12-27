@@ -18,6 +18,12 @@ class User : Person
     greet(name)
   end
 
+  class Mine
+    func do_something()
+      nil
+    end
+  end
+
 end
 
 current_user = User.new
@@ -27,3 +33,5 @@ current_user.login("Ben")
 print(current_user.class_instance)
 // User
 print(current_user.class_name)
+
+print(self.class_name)
