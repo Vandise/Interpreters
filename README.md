@@ -83,7 +83,31 @@ x.greet("Frank")
 ```
 
 #### Instance Variables
-Not yet implemented
+Instance variables are denoted with the @ prefix.
+```
+class Person
+  func construct(first_name,last_name)
+    @first_name = first_name
+    @last_name = last_name
+  end
+
+  func full_name()
+    @first_name + " " + @last_name
+  end
+
+  func set_first_name(value)
+    @first_name = value
+  end
+end
+
+person = Person.new("Ben", "Anderson)
+print(person.full_name)
+=> "Ben Anderson"
+
+person.set_first_name("Mr")
+print(person.full_name)
+=> "Mr Anderson"
+```
 
 #### Inheritance
 Inheritance is specified in the class definition, separated by a colon ":"
