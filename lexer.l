@@ -109,6 +109,8 @@ comment               \#.*$
               yylval->sval = STOKEN(yytext);
               return( token::ASSIGN );
             }
+
+"@"         { return(token::AT); }
             
 ","         { yylval->sval = STOKEN(yytext); return( token::COMMA ); }
 

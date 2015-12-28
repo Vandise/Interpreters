@@ -56,6 +56,8 @@
    #include "nodes/methoddefinitionnode.hpp"
    #include "nodes/classdefinitionnode.hpp"
    #include "nodes/constantnode.hpp"
+   #include "nodes/instancevariablenode.hpp"
+   #include "nodes/instancevariableassign.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -84,7 +86,7 @@
 %token            DOT
 %token            OPEN_PAREN
 %token            CLOSE_PAREN
-%token   <sval>   AT
+%token            AT
 %token   <sval>   EQ
 %token   <sval>   LE
 %token   <sval>   GE
@@ -133,7 +135,7 @@
 }
 
 
-%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Class GetConstant
+%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Class GetConstant InstanceVariable
 %type <driver>       Expressions
 %type <nodes>        BodyExpressions
 %type <parameters>   Parameters
@@ -185,6 +187,7 @@ Expression:
   | Call
   | Operator
   | GetConstant
+  | InstanceVariable
   | SetLocal
   | GetLocal
   | Function
@@ -267,7 +270,8 @@ Operator:
   ;
 
 SetLocal:
-  IDENTIFIER ASSIGN Expression     { $$ = new Nodes::LocalAssignNode(*$1, $3); }
+    IDENTIFIER ASSIGN Expression     { $$ = new Nodes::LocalAssignNode(*$1, $3); }
+  | AT IDENTIFIER ASSIGN Expression  { $$ = new Nodes::InstanceVariableAssign(*$2, $4); }
   ;
 
 GetLocal:
@@ -324,6 +328,10 @@ Class:
 
 GetConstant:
     CONSTANT                      { $$ = new Nodes::ConstantNode(*$1); }
+  ;
+
+InstanceVariable:
+    AT IDENTIFIER                 { $$ = new Nodes::InstanceVariableNode(*$2); }
   ;
 %%
 
