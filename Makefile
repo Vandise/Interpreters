@@ -1,7 +1,7 @@
 CC    ?= clang
 CXX   ?= clang++
 
-EXE = wc
+EXE = interpreter
 
 CDEBUG = -g -Wall
 
@@ -17,7 +17,7 @@ OBJDIR = obj/
 OUTDIR = bin/
 
 OBJ_FILES = $(wildcard obj/*.o)
-MAIN_DRIVER = main driver runtime bootstrapper context interpretedmethod
+MAIN_DRIVER = interpreter compiler driver runtime bootstrapper context interpretedmethod
 PARSER_LEXER =  parser lexer
 MAIN_DRIVER_OUT = $(addsuffix .o, $(addprefix $(OBJDIR),$(MAIN_DRIVER)))
 
@@ -27,12 +27,15 @@ NODE_FILES_OUT = $(addprefix obj/,$(notdir $(NODE_FILES:.cpp=.o)))
 RUNTIME_FILES = $(wildcard runtime/*.cpp)
 RUNTIME_FILES_OUT = $(addprefix obj/,$(notdir $(RUNTIME_FILES:.cpp=.o)))
 
-.PHONY: all
+.PHONY: all interpreter compiler
 
 all: dependencies
 
-compile:
-	$(CXX) $(CXXFLAGS) -o $(OUTDIR)$(EXE) $(OBJ_FILES) $(LIBS)
+interpreter:
+	$(CXX) $(CXXFLAGS) -o $(OUTDIR)interpreter $(filter-out obj/compiler.o,$(OBJ_FILES)) $(LIBS)
+
+compiler:
+	$(CXX) $(CXXFLAGS) -o $(OUTDIR)compiler $(filter-out obj/interpreter.o,$(OBJ_FILES)) $(LIBS)
 
 dependencies:
 	$(MAKE) $(PARSER_LEXER)

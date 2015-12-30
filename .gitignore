@@ -1,7 +1,9 @@
 .DS_Store
 bin/
 obj/
+compiled/
 lexer.yy.cc
 parser.output
 parser.tab.hh
 stack.hh
+interactive.src
