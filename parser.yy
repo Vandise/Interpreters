@@ -58,6 +58,7 @@
    #include "nodes/constantnode.hpp"
    #include "nodes/instancevariablenode.hpp"
    #include "nodes/instancevariableassign.hpp"
+   #include "nodes/lambdanode.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -71,6 +72,7 @@
 %token            ELSE
 %token            WHILE
 %token            END
+%token            DO
 %token            SELF
 %token            NIL
 %token            TRUE
@@ -86,6 +88,8 @@
 %token            DOT
 %token            OPEN_PAREN
 %token            CLOSE_PAREN
+%token            PIPE
+%token            LAMBDA
 %token            AT
 %token   <sval>   EQ
 %token   <sval>   LE
@@ -135,7 +139,7 @@
 }
 
 
-%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Class GetConstant InstanceVariable
+%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Lambda Class GetConstant InstanceVariable
 %type <driver>       Expressions
 %type <nodes>        BodyExpressions
 %type <parameters>   Parameters
@@ -191,6 +195,7 @@ Expression:
   | SetLocal
   | GetLocal
   | Function
+  | Lambda
   | Class
   | OPEN_PAREN Expression CLOSE_PAREN     { $$ = $2; }
   ;
@@ -296,6 +301,14 @@ Function:
     END                           {
                                     std::vector<std::string> arguments = std::vector<std::string>();
                                     $$ = new Nodes::MethodDefinitionNode(*$2, arguments, $4);
+                                  }
+  ;
+
+Lambda:
+    LAMBDA DO PIPE Parameters PIPE Terminator
+      BodyExpressions
+    END                           {
+                                    $$ = new Nodes::LambdaNode(*$4,$7);
                                   }
   ;
 

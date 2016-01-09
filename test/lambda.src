@@ -1,0 +1,5 @@
+greet = -> do |greeting,name|
+  print(greeting+" "+name)
+end
+
+greet.call("Hello","Ben")

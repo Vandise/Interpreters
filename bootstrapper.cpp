@@ -9,6 +9,7 @@
 #include "runtime/integer.hpp"
 #include "runtime/string.hpp"
 #include "runtime/object_methods.hpp"
+#include "runtime/lambda_methods.hpp"
 
 Context*
 Bootstrapper::run()
@@ -32,6 +33,7 @@ Bootstrapper::run()
   Lang::Runtime::falseObject  = objectClass->newSubclass(std::string("FalseClass"))->newInstance(0);
   Runtime::StdClass *intClass = objectClass->newSubclass(std::string("Integer"));
   Runtime::StdClass *strClass = objectClass->newSubclass(std::string("String"));
+  Runtime::StdClass *lambdaClass = objectClass->newSubclass(std::string("Lambda"));
 
   classClass->addMethod(std::string("new"),&class_new_method);
   classClass->addMethod(std::string("class_name"),&class_class_name_method);
@@ -40,6 +42,7 @@ Bootstrapper::run()
   objectClass->addMethod(std::string("print"),&global_print_method);
   objectClass->addMethod(std::string("class_instance"),&global_class_instance);
 
+  lambdaClass->addMethod(std::string("call"),&lambda_call_method);
   intClass->addMethod(std::string("+"),&int_add_method);
   intClass->addMethod(std::string("-"),&int_subtract_method);
   intClass->addMethod(std::string("*"),&int_multiply_method);

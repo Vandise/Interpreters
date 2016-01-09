@@ -58,6 +58,7 @@ comment               \#.*$
 "false"     { return(token::FALSE); }
 "nil"       { return(token::NIL);   }
 "self"      { return(token::SELF);  }
+"do"        { return(token::DO); }
 
 ([A-Z][a-zA-Z]*)+ {
                     yylval->sval = STOKEN(yytext);
@@ -68,6 +69,10 @@ comment               \#.*$
                     yylval->sval = STOKEN(yytext);
                     return( token::IDENTIFIER );
                   }
+
+"|"         { return(token::PIPE); }
+
+"->"        { return(token::LAMBDA); }
 
 "+"         {
               yylval->sval = STOKEN(yytext);
