@@ -1,5 +1,9 @@
+func callable_param(callable)
+  callable.call("Hello","Ben")
+end
+
 greet = -> do |greeting,name|
   print(greeting+" "+name)
 end
 
-greet.call("Hello","Ben")
+callable_param(greet)
