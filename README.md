@@ -37,6 +37,44 @@ Every method call is simply a message sent to an object instance. In the previou
 object->call("+",[1,2])
 ```
 
+### Lambdas (Anonymous Functions)
+Lambda function objects are defined with the following syntax:
+```
+l = -> do |param_1, param_2|
+  print(param_1,param_2)
+end
+
+print(l.class_name)
+=> Lambda
+
+l.call("string",1)
+=> string
+=> 1
+```
+Lambdas can also be called anonymously
+```
+(-> do |greeting,name|
+  print(greeting+" "+name)
+end).call("Hello","Bob")
+=> Hello Bob
+```
+
+And passed as a callback parameter
+```
+// method
+func callable_param(callable)
+  callable.call("Hello","Bob")
+end
+
+// lambda definition
+greet = -> do |greeting,name|
+  print(greeting+" "+name)
+end
+
+callable_param(greet)
+=> Hello Bob
+```
+
 ### User Defined Classes
 All class names must begin with a capital letter in order to be put into the runtime. A simple person class can be constructed like the following:
 ```
