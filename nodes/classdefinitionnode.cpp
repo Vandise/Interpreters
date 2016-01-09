@@ -24,10 +24,16 @@ Nodes::ClassDefinitionNode::eval(Context *context)
   // the default superclass is Object
   if(this->superName.empty())
   {
-
-    klass = new Runtime::StdClass(this->name,
-      (Runtime::StdClass*)context->getCurrentClass()->getConstant(std::string("Object"))
-    );
+    if(context->getCurrentClass()->hasConstant(this->name))
+    {
+      klass = (Runtime::StdClass*)context->getCurrentClass()->getConstant(this->name);
+    }
+    else
+    {
+      klass = new Runtime::StdClass(this->name,
+        (Runtime::StdClass*)context->getCurrentClass()->getConstant(std::string("Object"))
+      );
+    }
     //
     // TODO: There's a bug with Lang::Runtime::getRootClass(....)
     // the constructor should make a call to the "Class" class, but throws a segment error
