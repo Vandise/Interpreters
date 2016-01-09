@@ -1,9 +1,25 @@
+// method
 func callable_param(callable)
   callable.call("Hello","Ben")
 end
 
+// lambda definition
 greet = -> do |greeting,name|
   print(greeting+" "+name)
 end
 
+// lambda call
+greet.call("Hello","Ben")
+
+//pass by reference
 callable_param(greet)
+
+// pass anonymous lambda
+callable_param(-> do |greeting,name|
+  print(greeting+" "+name)
+end)
+
+// anonymous lambda call/definition
+(-> do |num_one,num_two|
+  print(num_one + num_two)
+end).call(5,5)
