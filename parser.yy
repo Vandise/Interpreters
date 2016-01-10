@@ -59,6 +59,7 @@
    #include "nodes/instancevariablenode.hpp"
    #include "nodes/instancevariableassign.hpp"
    #include "nodes/lambdanode.hpp"
+   #include "nodes/arraynode.hpp"
    #include "runtime.hpp"
 
    #undef yylex
@@ -88,6 +89,8 @@
 %token            DOT
 %token            OPEN_PAREN
 %token            CLOSE_PAREN
+%token            L_BRACKET
+%token            R_BRACKET
 %token            PIPE
 %token            LAMBDA
 %token            AT
@@ -139,7 +142,7 @@
 }
 
 
-%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Lambda Class GetConstant InstanceVariable
+%type <abs_node>     Expression Literal Call Operator SetLocal GetLocal Function Iterable Lambda Class GetConstant InstanceVariable
 %type <driver>       Expressions
 %type <nodes>        BodyExpressions
 %type <parameters>   Parameters
@@ -196,6 +199,7 @@ Expression:
   | GetLocal
   | Function
   | Lambda
+  | Iterable
   | Class
   | OPEN_PAREN Expression CLOSE_PAREN     { $$ = $2; }
   ;
@@ -215,6 +219,11 @@ Call:
   | Expression DOT IDENTIFIER                                   {
                                                                   std::vector<Nodes::AbstractNode*> *arguments = new std::vector<Nodes::AbstractNode*>();
                                                                   $$ = new Nodes::CallNode(*$3, $1, *arguments);
+                                                                }
+  | Expression L_BRACKET Expression R_BRACKET                   {
+                                                                  std::vector<Nodes::AbstractNode*> *arguments = new std::vector<Nodes::AbstractNode*>();
+                                                                  arguments->push_back($3);
+                                                                  $$ = new Nodes::CallNode(std::string("index"),$1,*arguments);
                                                                 }
   ;
 
@@ -309,6 +318,12 @@ Lambda:
       BodyExpressions
     END                           {
                                     $$ = new Nodes::LambdaNode(*$4,$7);
+                                  }
+  ;
+
+Iterable:
+    L_BRACKET Arguments R_BRACKET {
+                                    $$ = new Nodes::ArrayNode(*$2);    
                                   }
   ;
 

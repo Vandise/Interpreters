@@ -1,0 +1,14 @@
+ten = 10
+twenty = 20
+//
+// Arrays are 0 indexed
+//  0 = 10
+//  1 = 20
+//  2 = "thirty"
+//
+array = [ten,twenty,"thirty"]
+
+print(array.size)
+// => 3
+print(array[2])
+// => "thirty"

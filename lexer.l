@@ -123,6 +123,9 @@ comment               \#.*$
 
 ":"         { return( token::COLON ); }
 
+"["         { return( token::L_BRACKET ); }
+"]"         { return( token::R_BRACKET ); }
+
 .           {  /* printf("unknown character in input: %c\n", *yytext); */ }
 
 %%

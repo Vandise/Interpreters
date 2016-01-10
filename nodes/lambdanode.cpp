@@ -1,6 +1,5 @@
 #include "lambdanode.hpp"
 #include "../runtime.hpp"
-#include "../interpretedmethod.hpp"
 #include "../context.hpp"
 #include "../runtime/stdclass.hpp"
 #include "../runtime/lambda.hpp"
