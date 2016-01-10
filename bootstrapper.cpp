@@ -48,6 +48,7 @@ Bootstrapper::run()
 
   arrayClass->addMethod(std::string("size"),&array_size_method);
   arrayClass->addMethod(std::string("index"),&array_index_method);
+  arrayClass->addMethod(std::string("each"),&array_each_method);
 
   intClass->addMethod(std::string("+"),&int_add_method);
   intClass->addMethod(std::string("-"),&int_subtract_method);

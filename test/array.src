@@ -12,3 +12,9 @@ print(array.size)
 // => 3
 print(array[2])
 // => "thirty"
+
+answer = nil
+
+array.each(-> do |element|
+  print(element)
+end)
