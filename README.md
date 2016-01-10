@@ -75,6 +75,33 @@ callable_param(greet)
 => Hello Bob
 ```
 
+### Arrays
+Arrays are partially implemented and can store/intermix any data-types:
+```
+array = [1,2,"three",(5<4), nil]
+=> <Array 0x00...>
+array.size
+=> 5
+```
+Elements can be called via the *index* method. Note arrays are 0-based!
+```
+array.index(0)
+=> 1
+
+// shorthand
+array[4]
+=> nil
+```
+Arrays can be iterated with a basic lambda function passed to the *each* method
+```
+array.each -> do |element|
+  print(element)
+end
+=> 1
+=> 2
+...
+```
+
 ### User Defined Classes
 All class names must begin with a capital letter in order to be put into the runtime. A simple person class can be constructed like the following:
 ```
@@ -192,6 +219,10 @@ Note: Implemented for concepts only.
   - False
   - Nil
   - Self
+  - Lambda
+  - Array
+    - size
+    - each
 
 ### Runtime
 User-defined code is useless unless it has a runtime to execute in. The Core classes are readily available in the runtime for the user to use. It is also where we define all core methods to these classes.
