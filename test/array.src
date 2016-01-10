@@ -15,6 +15,6 @@ print(array[2])
 
 answer = nil
 
-array.each(-> do |element|
+array.each -> do |element|
   print(element)
-end)
+end

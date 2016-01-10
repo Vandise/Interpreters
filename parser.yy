@@ -220,6 +220,9 @@ Call:
                                                                   std::vector<Nodes::AbstractNode*> *arguments = new std::vector<Nodes::AbstractNode*>();
                                                                   $$ = new Nodes::CallNode(*$3, $1, *arguments);
                                                                 }
+  | Expression DOT IDENTIFIER Arguments                         {
+                                                                   $$ = new Nodes::CallNode(*$3, $1, *$4);
+                                                                }
   | Expression L_BRACKET Expression R_BRACKET                   {
                                                                   std::vector<Nodes::AbstractNode*> *arguments = new std::vector<Nodes::AbstractNode*>();
                                                                   arguments->push_back($3);
