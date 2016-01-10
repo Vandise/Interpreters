@@ -15,7 +15,10 @@ Runtime::LambdaObject::LambdaObject(std::vector<std::string> parameters, Nodes::
 Runtime::Object*
 Runtime::LambdaObject::eval(std::vector<Runtime::Object*> arguments)
 {
-  Context *context = new Context(this);
+  //
+  // Lambda objects should preserve local variables in the given scope
+  // Context *context = new Context(this);
+  //
 
   if(this->parameters.size() != arguments.size())
   {
@@ -24,7 +27,7 @@ Runtime::LambdaObject::eval(std::vector<Runtime::Object*> arguments)
 
   for(int i = 0; i < this->parameters.size(); i++)
   {
-    context->setLocal(this->parameters[i], arguments[i]);
+    this->context->setLocal(this->parameters[i], arguments[i]);
   }
 
   return this->body->eval(context);

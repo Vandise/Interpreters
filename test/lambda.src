@@ -23,3 +23,14 @@ end)
 (-> do |num_one,num_two|
   print(num_one + num_two)
 end).call(5,5)
+
+//
+// Variable scope testing
+//
+add_to_total = -> do |number|
+  total = total + number
+end
+
+total = 0
+add_to_total.call(5)
+print(total)
